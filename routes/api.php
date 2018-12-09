@@ -18,11 +18,11 @@ use \App\Product;
 
 Route::middleware('auth.basic')->group(function () {
 
-    Route::get('users', 'UsersController@index');
-    Route::get('users/{user}', 'UsersController@show');
-    Route::post('users', 'UsersController@store');
-    Route::put('users/{user}', 'UsersController@update');
-    Route::delete('users/{user}', 'UsersController@delete');
+    Route::get('users', 'API\UsersController@index');
+    Route::get('users/{user}', 'API\UsersController@show');
+    Route::post('users', 'API\UsersController@store');
+    Route::put('users/{user}', 'API\UsersController@update');
+    Route::delete('users/{user}', 'API\UsersController@delete');
 
 });
 
