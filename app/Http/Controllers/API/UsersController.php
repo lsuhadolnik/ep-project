@@ -19,7 +19,7 @@ class UsersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('api:auth');
+
     }
 
     
@@ -50,6 +50,5 @@ class UsersController extends Controller
         $user->delete();
         return response()->json(null, 204);
     }
-
 
 }
