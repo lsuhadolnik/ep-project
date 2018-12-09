@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use \App\Order;
+use \App\User
 
 use \App\Http\Controllers\Controller;
 
@@ -18,25 +19,38 @@ class UsersController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('api:auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function shoppingCart()
+    
+    public function index()
     {
-
-		if(Auth::check()){
-
-        	return Order::shoppingCart(Auth::user()->id);
-
-		}
-
-		return "Not authorized.";
+        return User::all();
     }
+
+    public function show(User $user)
+    {
+        return $user;
+    }
+
+    public function store(Request $request)
+    {
+        $user = User::create($user->all());
+        return response()->json($user, 201);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $user->update($user->all());
+        return response()->json($user, 200);
+    }
+
+    public function delete(User $user)
+    {
+        $user->delete();
+        return response()->json(null, 204);
+    }
+}
 
 
 

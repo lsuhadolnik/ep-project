@@ -16,11 +16,14 @@ use \App\Product;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth.basic')->group(function () {
+
+    Route::get('users', 'UsersController@index');
+    Route::get('users/{user}', 'UsersController@show');
+    Route::post('users', 'UsersController@store');
+    Route::put('users/{user}', 'UsersController@update');
+    Route::delete('users/{user}', 'UsersController@delete');
+
 });
-
-
-Route::get('/products', '\App\Http\Controllers\API\ProductsController@index');
 
 
