@@ -25,12 +25,35 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'role_id'
     ];
+
+	protected $with = ['role'];
+	protected $appends = ['role'];
 
     public function role()
     {
-	return $this->belongsTo('\App\Role');
-    } 
+		return $this->belongsTo('\App\Role');
+    }
+
+	public function getRoleAttribute()
+	{ 
+		return $this->role()->first();
+	}
+
+    public static function hello()
+    {
+		echo "Hello!";
+    }
+
+	public function orders()
+	{
+		return $this->hasMany('App\Order');
+	}
+
+	public function getShoppingCart()
+	{
+
+	}
 
 }
