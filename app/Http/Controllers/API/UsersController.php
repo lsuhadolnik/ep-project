@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use \App\Order;
-use \App\User
+use \App\User;
 
 use \App\Http\Controllers\Controller;
 
