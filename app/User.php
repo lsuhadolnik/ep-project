@@ -6,6 +6,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Order;
+use App\Rating;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -46,14 +49,58 @@ class User extends Authenticatable
 		echo "Hello!";
     }
 
-	public function orders()
+	public function orders($status = 'none')
 	{
+
+        if(($status != 'none')){
+            return $this->hasMany('App\Order')->where('status', $status);
+        }
+
 		return $this->hasMany('App\Order');
 	}
 
-	public function getShoppingCart()
+	public function shoppingCart()
 	{
+        if(isset($this->id))
+        {
+            return Order::shoppingCart($this->id);
+        }
+        else
+        {
+            throw new \Exception("User ID is not set. Did you save the model?");
+        }
+    }
+    
 
-	}
+
+    // Edit
+
+    public function setRole($role_name) {
+        
+        $role = Role::where('name', $role_name)->first();
+
+        if(!$roles)
+        {
+            return false;
+        }
+
+        $this->role_id = $role->id;
+        return $this->save();
+
+    }
+
+    public function rateProduct($product_id, $rating){
+
+        try {
+            return Rating::create([
+                'user_id'=>$this->id,
+                'product_id'=>$product_id,
+                'rating'=>$rating
+            ]);
+        } catch(Exception $e){
+            return false;
+        }
+        
+    }
 
 }
