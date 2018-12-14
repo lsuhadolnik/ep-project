@@ -16,10 +16,12 @@ use \App\Product;
 |
 */
 
-Route::middleware('auth.basic')->group(function () {
+Route::get('users/{user}', 'API\UsersController@show');
+
+
+Route::middleware('auth.basic.once')->group(function () {
 
     Route::get('users', 'API\UsersController@index');
-    Route::get('users/{user}', 'API\UsersController@show');
     Route::post('users', 'API\UsersController@store');
     Route::put('users/{user}', 'API\UsersController@update');
     Route::delete('users/{user}', 'API\UsersController@delete');
