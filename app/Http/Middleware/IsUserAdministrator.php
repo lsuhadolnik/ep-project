@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use \App\User;
 use Illuminate\Support\Facades\Auth;
 
 class IsUserAdministrator
@@ -15,7 +16,10 @@ class IsUserAdministrator
      */
     public function handle($request, $next)
     {
-        return $next($request);
+        $u = Auth::user();
+        if($u->role->id == 1)
+            return $next($request);
+        else abort(403, 'This action requires admin privileges. You are not an admin.');
     }
 
 }
