@@ -79,7 +79,7 @@ class User extends Authenticatable
         
         $role = Role::where('name', $role_name)->first();
 
-        if(!$roles)
+        if(!$role)
         {
             return false;
         }
