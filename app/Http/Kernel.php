@@ -65,6 +65,8 @@ class Kernel extends HttpKernel
         'is-admin' => \App\Http\Middleware\IsUserAdministrator::class,
         'is-salesperson' => \App\Http\Middleware\IsUserSalespersonOrAdministrator::class,
         'https' => \App\Http\Middleware\RequireHTTPS::class,
+
+        'cert' => \App\Http\Middleware\VerifyCert::class,
     ];
 
     /**
