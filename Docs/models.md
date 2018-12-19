@@ -48,6 +48,7 @@ User::find(1);
      email_verified_at: null,
      created_at: "2018-12-01 22:08:38",
      updated_at: null,
+     postal_code: 1000,
      role: App\Role {
        id: 1,
        name: "Administrator",
@@ -214,6 +215,12 @@ User::find($id)->delete();
 Vrne true/false če je poizvedba uspela.
 
 
+- **Informacije o poštni številki**
+
+```php
+User::find($id)->postalCode()->get();
+```
+
 
 ## Product
 
@@ -337,6 +344,14 @@ Producer::find($id)->delete();
 ```
 
 
+
+## PostalCode
+
+Poštne številke...
+
+- `PostalCode::find($id)`
+
+Podatki o poštni številki z ID-jem $id.
 
 
 

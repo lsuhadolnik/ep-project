@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function postalCode()
     {
-        return $this->belongsTo('\App\PostalCode');
+        return $this->belongsTo('\App\PostalCode', 'postal_code');
     }
 
 
