@@ -34,6 +34,12 @@ class User extends Authenticatable
 	protected $with = ['role'];
 	protected $appends = ['role'];
 
+    public function postalCode()
+    {
+        return $this->belongsTo('\App\PostalCode');
+    }
+
+
     public function role()
     {
 		return $this->belongsTo('\App\Role');
