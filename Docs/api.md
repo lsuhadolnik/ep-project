@@ -15,16 +15,16 @@ Authorization: Basic cHJvZEBlcC5zaTpoZWxsbyE=
 ## Implementirane lokacije
 
 - **GET /api/user** (HTTPS, AUTH) Vrne informacije o trenutnem uporabniku
+- **POST /api/user** (HTTPS) Dodajanje nove stranke. Poslati mora tudi CAPTCHA field (google captcha) [TODO]
+- **PUT /api/user** (HTTPS, AUTH) Popravljanje uporabnika.
+- **PUT /api/user/rate/(product_id)** (HTTPS, AUTH) Oceni produkt
+- **GET /api/user/shoppingCart** (HTTPS, AUTH) Pregled košarice uporabnika
+
 
 ## Lokacije, ki bodo implementirane
 
 
-- **POST /api/user** (HTTPS, AUTH) Dodajanje novega uporabnika. Doda se lahko samo uporabnik stranka. Poslati mora tudi CAPTCHA field (google captcha)
-- **PUT /api/user** (HTTPS, AUTH) Popravljanje uporabnika.
 
-- **PUT /api/user/rate/(product_id)** (HTTPS, AUTH) Oceni produkt
-
-- **GET /api/user/shoppingCart** (HTTPS, AUTH) Pregled košarice uporabnika
 - **PUT /api/user/shoppingCart/(product_id)** (HTTPS, AUTH) Doda produkt v košarico uporabnika. Lahko tudi popravljaš količino (mora biti pozitivna).
 - **DELETE /api/user/shoppingCart/(product_id)** (HTTPS, AUTH) Odstrani produkt iz košarice uporabnika
 - **GET /api/user/orders** (HTTPS, AUTH) Pregled naročil uporabnika

@@ -41,23 +41,14 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        $user = new User();
-        $user->name = $data->name;
-        $user->surname = $data->surname;
-        $user->address = $data->address;
-        $user->email = $data->email;
-        $user->phone = $data->phone;
-        $user->role_id = Role::where("name", 'Stranka')->id;
-        $user->postal_code = $data->postal_code;
-        $user->password = Hash::make($data->password);
         $user = User::create($request->all());
         return response()->json($user, 201);
     }
 
-    public function updateMe(Request $request, User $user)
+    public function updateMe(Request $request)
     {
-        Auth::user()->update($user->all());
+        $user = Auth::user();
+        $user->update($request->all());
         return response()->json($user, 200);
     }
 
@@ -71,6 +62,31 @@ class UsersController extends Controller
     {
         $user->delete();
         return response()->json(null, 204);
+    }
+
+    public function rateProduct(Request $request, $product)
+    {
+        $data = $request->all();
+        if(isset($data['rating']) && !empty($data['rating']))
+        {
+            Auth::user()->rateProduct($product, $data['rating']);
+            return response()->json(["status"=>"OK"], 200);
+        }
+        return response()->json("Error. Please provide rating in the request body.", 400);
+    }
+
+    public function shoppingCart(Request $request) 
+    {
+        $user = Auth::user();
+        return response()->json($user->shoppingCart());
+    }
+
+    public function cartProduct(Request $request, $product_id) 
+    {
+        $user = Auth::user();
+        $o = $u->shoppingCart();
+        
+        return response()->json($user->shoppingCart());
     }
 
 }

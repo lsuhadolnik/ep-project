@@ -16,12 +16,17 @@ use \App\Product;
 |
 */
 
-Route::group(['middleware' => ['https', 'auth.basic.once']], function() {
-    
-    Route::get('user', 'API\UsersController@showMe');
-    Route::get('user', 'API\UsersController@showMe');
+Route::post('user', 'API\UsersController@store')->middleware('https');
 
-})
+Route::group(['middleware' => ['https', 'auth.basic.once']], function() {
+
+
+    Route::get('user', 'API\UsersController@showMe');
+    Route::put('user', 'API\UsersController@updateMe');
+    Route::put('user/rate/{product_id}', 'API\UsersController@rateProduct');
+    Route::get('user/shoppingCart', 'API\UsersController@shoppingCart');
+
+});
 
 
 

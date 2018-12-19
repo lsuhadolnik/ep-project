@@ -25,7 +25,6 @@ class Order extends Model
 	}
 	
 	public static function shoppingCart($user_id){
-
 		return Order::firstOrNew([
 			'user_id' => $user_id,
 			'status' => 'draft'
@@ -35,7 +34,8 @@ class Order extends Model
 	public function getTotalPriceAttribute(){
 
 		if(!isset($this->id)){
-			throw new \Exception("Order ID not set. Did you save the model?");
+			return 0;
+			//throw new \Exception("Order ID not set. Did you save the model?");
 		}
 
 		$result = DB::select("SELECT 
@@ -55,6 +55,36 @@ class Order extends Model
 
 		return $result[0]->TotalPrice;
 
+	}
+
+	public function modifyOrderProduct($product_id, $quantity){
+		
+		if(!$this->id) {
+			$this->save();
+		}
+
+		// Če je quantity <= 0 -> odstrani iz košarice, če obstaja
+		if($quantity <= 0) 
+		{
+			$this->products()->detach($product_id);
+		}
+		// Če je quantity > 0 -> dodaj/posodobi košarico
+		else 
+		{
+			$p = $this->products()->find($product_id);
+			if($p == null) 
+			{
+				$this->products()->attach($product_id, ['quantity' => $quantity]);
+			}
+			else
+			{
+				$p->pivot->quantity = $quantity;
+				$p->save();
+			}
+			
+		}
+
+		return $this;
 	}
 
 }
