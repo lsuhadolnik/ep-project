@@ -22,7 +22,25 @@ sudo service apache2 restart
 
 sudo vim /etc/apache2/sites-available/default-ssl.conf
 ```
-sem kopiraj isto kot zgoraj (Basic Laravel routes) in nastavi pravilno pot do `.crt` in `.key` datoteke.
+
+```apache
+
+        DocumentRoot /var/www/ep_projekt/public
+		<Directory /var/www/ep_projekt/public>
+        	 AllowOverride all
+	    </Directory>
+
+		<LocationMatch "^(/api)?/secure(/(.*))?">
+			
+			SSLOptions +StdEnvVars
+		    SSLVerifyClient require
+
+		</LocationMatch>
+
+        SSLCACertificateFile	/var/www/ep_projekt/certs/ca.crt
+		SSLCertificateFile	/var/www/ep_projekt/certs/server.crt
+		SSLCertificateKeyFile /var/www/ep_projekt/certs/server.key
+```
 
 Potem
 ```bash

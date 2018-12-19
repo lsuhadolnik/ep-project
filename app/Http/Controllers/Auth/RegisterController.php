@@ -70,9 +70,8 @@ class RegisterController extends Controller
 		$u = new User;
 		$u->name = $data['name'];
 		$u->email = $data['email'];
-		$u->password = Hash::make($data['password']);
+		$u->password = $data['password'];
 		$u->role_id = Role::where('name', 'Stranka')->first()->id;
-
 		$u->save();
 
 		return $u;

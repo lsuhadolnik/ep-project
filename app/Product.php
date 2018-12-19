@@ -15,7 +15,7 @@ class Product extends Model
 	// Preload the relationships to save some bytes
 	protected $with = ['producer', 'images'];	
 
-	protected $hidden = ['pivot'];
+	//protected $hidden = ['pivot'];
 	
 
 	
@@ -35,7 +35,7 @@ class Product extends Model
 	}
 
 	public function getQuantityAttribute() {
-		if(!isset($this->pivot) || !$this->pivot->quantity){
+		if(!isset($this->pivot)){
 			return 0;
 		}
 		

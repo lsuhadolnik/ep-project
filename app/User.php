@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 use App\Order;
 use App\Rating;
@@ -19,7 +20,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'address', 'email', 'phone', 'password','status'
+        'name', 'surname', 'address', 'email', 'phone', 'password', 'status'
+    ];
+
+    protected $attributes = [
+        'status' => 'active',
+        'role_id' => 3,
+        'phone' => null,
+        'surname' => null,
+        'name' => null,
+        'postal_code' => null
     ];
 
     /**
@@ -33,6 +43,32 @@ class User extends Authenticatable
 
 	protected $with = ['role'];
 	protected $appends = ['role'];
+
+    public function postalCode()
+    {
+        return $this->belongsTo('\App\PostalCode', 'postal_code');
+    }
+
+
+    // Sanitize input
+    public function setNameAttribute($name){
+        $this->attributes['name'] = e($name);
+    }
+    public function setSurnameAttribute($name){
+        $this->attributes['surname'] = e($name);
+    }
+    public function setAddressAttribute($name){
+        $this->attributes['address'] = e($name);
+    }
+    public function setPhoneAttribute($name){
+        $this->attributes['phone'] = e($name);
+    }
+    // ------------------------------------
+
+    public function setPasswordAttribute($pass){
+        $this->attributes['password'] = Hash::make($pass);
+    }
+
 
     public function role()
     {
