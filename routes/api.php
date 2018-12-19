@@ -16,6 +16,15 @@ use \App\Product;
 |
 */
 
+Route::group(['middleware' => ['https', 'auth.basic.once']], function() {
+    
+    Route::get('user', 'API\UsersController@showMe');
+    Route::get('user', 'API\UsersController@showMe');
+
+})
+
+
+
 Route::get('users/{user}', 'API\UsersController@show');
 
 

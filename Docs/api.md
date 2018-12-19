@@ -12,22 +12,24 @@ Authorization: Basic cHJvZEBlcC5zaTpoZWxsbyE=
 ```
 Če odkodiraš cHJvZEBlcC5zaTpoZWxsbyE= z BASE64 decoderjem dobiš string `prod@ep.si:hello!`
 
+## Implementirane lokacije
 
-## Lokacije
+- **GET /api/user** (HTTPS, AUTH) Vrne informacije o trenutnem uporabniku
 
-- **GET /api/secure/users** (HTTPS, AUTH, CERT, ADMIN-ONLY) Seznam vseh uporabnikov
-- **GET /api/users/(id)** (HTTPS, AUTH) Podatki o določenem uporabniku. Vsak lahko vidi svoj profil, administrator pa kateregakoli.
-- **POST /api/users** (HTTPS) Dodajanje novega uporabnika. Doda se lahko samo uporabnik stranka. (Treba bo rešit še CAPTCHA verification)
-- **PUT /api/users/(id)** (HTTPS, AUTH) Popravljanje uporabnika. Vsak lahko popravlja samo sebe, ADMIN lahko popravlja vse.
-- **DELETE /api/secure/users/(id)** (HTTPS, AUTH, CERT, ADMIN-ONLY)
-- **GET /api/users/(id)/shoppingCart** (HTTPS, AUTH) Pregled košarice uporabnika
+## Lokacije, ki bodo implementirane
 
 
-- **GET /api/producers**
+- **POST /api/user** (HTTPS, AUTH) Dodajanje novega uporabnika. Doda se lahko samo uporabnik stranka. Poslati mora tudi CAPTCHA field (google captcha)
+- **PUT /api/user** (HTTPS, AUTH) Popravljanje uporabnika.
 
-- **GET /api/images**
+- **PUT /api/user/rate/(product_id)** (HTTPS, AUTH) Oceni produkt
+
+- **GET /api/user/shoppingCart** (HTTPS, AUTH) Pregled košarice uporabnika
+- **PUT /api/user/shoppingCart/(product_id)** (HTTPS, AUTH) Doda produkt v košarico uporabnika. Lahko tudi popravljaš količino (mora biti pozitivna).
+- **DELETE /api/user/shoppingCart/(product_id)** (HTTPS, AUTH) Odstrani produkt iz košarice uporabnika
+- **GET /api/user/orders** (HTTPS, AUTH) Pregled naročil uporabnika
 
 - **GET /api/products/** Seznam vseh AKTIVNIH produktov.
 - **GET /api/products/(id)** Informacije o produktu.
-- **POST /api/secure/products** (HTTPS, AUTH, CERT, SALES+) Dodajanje novega produkta
-- **POST /api/secure/products/(id)/image** (HTTPS, AUTH, CERT, SALES+) Dodajanje slike produkta
+- **GET /api/products/mostWanted/(n)** Pridobi n najbolje prodajanih produktov
+- **GET /api/products/topRated/(n)** Pridobi n najbolje ocenjenih produktov
