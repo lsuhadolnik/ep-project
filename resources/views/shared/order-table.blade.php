@@ -17,5 +17,10 @@
             <td> 2 </td>
             <td> 10.00 $<td>
         </tr>
+        <tr>
+            <td>  </td>
+            <th> Skupaj: </th>
+            <th>20.00 $<th>
+        </tr>
     </tbody>
 </table>

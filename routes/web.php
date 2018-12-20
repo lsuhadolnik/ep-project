@@ -20,6 +20,11 @@ Route::get('/order', function() {
     return view('order');
 });
 
+/*tukaj mora priti se id od userja?*/
+Route::get('/cart', function() {
+    return view('shopping-cart');
+});
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
