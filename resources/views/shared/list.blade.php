@@ -19,7 +19,7 @@
             </div>
             <div class="col-2 offset-1">
                 <div class="list-price">
-                    <h3>24.56$</h3>
+                    <h3>28.56$</h3>
                 </div>
 
                 @include('shared.stars')
@@ -28,9 +28,9 @@
                 <div class="list-quantity">
                     <h6>Količina</h6>
                 </div>
-                <div class="list-quantity-number rounded">
-                    <p>1</p>
-                </div>
+                
+                <input type="text" class="list-quantity-number" name="quantity" value="0">
+                
             </div>
             <div class=col-1>
                 <a class="icon-button" href="plus">

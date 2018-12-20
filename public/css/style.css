@@ -3,9 +3,16 @@
     --my-middle-blue: #4682B4;
     --my-light-blue:  #B2DFEE;
 }
-/* body p {
-    color:white;
-} */
+body h3, h4, h5, thead{
+    color:var(--my-dark-blue);
+}
+body tbody {
+    color:var(--my-middle-blue);
+}
+.btn-primary {
+    background-color:var(--my-dark-blue) !important;
+    border-color:var(--my-dark-blue) !important;
+}
 .my-navbar {
     background-color: var(--my-dark-blue);
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
@@ -73,16 +80,18 @@
 }
 .list-quantity-number {
     border: 1px solid var(--my-middle-blue);
-    text-align: right;
+    border-radius: 0.25em;
+    text-align: center;
     font-size: 20px;
-    float: left;
     width:50%;
     background-color:white;
+    color: var(--my-middle-blue);
 }
-.list-quantity-number p{
+/* .list-quantity-number input{
+    width:50%;
     text-align:center;
     margin-bottom: 5px;
-}
+} */
 .add-delete-icon {
     margin-left:-35px;
     margin-top: 35px;

@@ -12,8 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->middleware('verified');
+    return view('index');
+});
+
+/*tukaj mora priti se id od orderja*/
+Route::get('/order', function() {
+    return view('order');
+});
 
 Auth::routes(['verify' => true]);
 
