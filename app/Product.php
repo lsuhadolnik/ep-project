@@ -18,8 +18,6 @@ class Product extends Model
 	//protected $hidden = ['pivot'];
 	
 
-	
-
 	// Define relationships
 	public function images(){
 		return $this->belongsToMany('App\Image', 'product_images');

@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\User;
+use App\Role;
 
 class UsersSeeder extends Seeder
 {
@@ -24,7 +25,7 @@ class UsersSeeder extends Seeder
         $u->address = '--';
         $u->email = "admin@ep.si";
         $u->phone = "--";
-        $u->password = $u->password = Hash::make("admin");
+        $u->password = "hello!";
         $u->role_id = 1; // Administrator
         $u->save();
 
@@ -32,9 +33,9 @@ class UsersSeeder extends Seeder
         $u->name = 'Petra';
         $u->surname = 'Kramar';
         $u->address = '--';
-        $u->email = "petra@ep.si";
+        $u->email = "prod@ep.si";
         $u->phone = "--";
-        $u->password = $u->password = Hash::make("petra");
+        $u->password = "hello!";
         $u->role_id = 2; // Prodajalec
         $u->save();
 
@@ -44,7 +45,7 @@ class UsersSeeder extends Seeder
         $u->address = '--';
         $u->email = "albert@ep.si";
         $u->phone = "--";
-        $u->password = $u->password = Hash::make("albert");
+        $u->password = "albert";
         $u->role_id = 2; // Prodajalec
         $u->save();
 
@@ -54,7 +55,7 @@ class UsersSeeder extends Seeder
         $u->address = 'Janezova 16\n1000 Ljubljana';
         $u->email = "janez@ep.si";
         $u->phone = "031442546";
-        $u->password = $u->password = Hash::make("janez");
+        $u->password = "janez";
         $u->role_id = 3; // Administrator
         $u->save();
 
