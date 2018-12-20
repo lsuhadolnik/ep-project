@@ -29,6 +29,10 @@ Route::get('/orders', function() {
 Route::get('/cart', function() {
     return view('shopping-cart');
 });
+/*tukaj mora priti se id od userja*/
+Route::get('/profile', function() {
+    return view('profile');
+});
 
 Auth::routes(['verify' => true]);
 

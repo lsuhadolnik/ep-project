@@ -119,6 +119,13 @@ a.icon-button {
 .link {
     color:var(--my-middle-blue);
 }
+.user-profile, .user-password{
+    width:50%;
+    float:left;
+}
+.user-profile input, .user-password input{
+    margin:5px;
+}
 
 
 
