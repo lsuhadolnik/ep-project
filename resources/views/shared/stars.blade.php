@@ -1,4 +1,4 @@
-<div class="rating">
+<div class="rating" >
     <i class="fas fa-star"></i>
     <i class="fas fa-star"></i>
     <i class="fas fa-star"></i>

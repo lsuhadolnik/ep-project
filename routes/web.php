@@ -38,6 +38,11 @@ Route::get('/users', function() {
     return view('users');
 });
 
+/*tukaj mora priti se id od produkta*/
+Route::get('/product', function() {
+    return view('product');
+});
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');

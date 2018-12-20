@@ -127,5 +127,40 @@ a.icon-button {
     margin:5px;
 }
 
+.carousel-stars {
+    width:30%;
+    float:left;
+}
+.product-info{
+    width:50%;
+    float:left;
+    margin-left:50px;
+}
+
+.product p{
+    color:var(--my-dark-blue);
+}
+
+.quantity label{
+    color:var(--my-dark-blue);
+    font-size: 20px;
+}
+.product-quantity-number {
+    border: 1px solid var(--my-middle-blue);
+    border-radius: 0.25em;
+    text-align: center;
+    font-size: 20px;
+    background-color:white;
+    color: var(--my-middle-blue);
+    width:100px;
+    margin-left:5px;
+}
+.stars{
+    margin-left:60px;
+    cursor:pointer;
+}
+
+
+
 
 
