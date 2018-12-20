@@ -29,8 +29,13 @@
                     </tr>
                     
                     <tr>
-                        <th><label for="address">Naslov</label><th>
+                        <th><label for="address">Naslov (ulica in hišna številka)</label><th>
                         <td><input type="text" name="address" ><td>
+                    </tr>
+
+                    <tr>
+                        <th><label for="postal">Poštna številka</label><th>
+                        <td><input type="text" name="postal" ><td>
                     </tr>
                     
                 </table>
