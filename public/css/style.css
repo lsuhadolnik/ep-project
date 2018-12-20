@@ -100,17 +100,24 @@ a.icon-button {
     /* margin: 0 auto; */
 }
 
-.cart-title {
+.cart-title, .orders-title {
     width:70%;
     float:left;
 }
-.cart-total{
+.cart-total, .orders-select{
     width:30%;
     float:right;
     text-align:right;
+    color:var(--my-dark-blue);
+}
+.orders-select option{
+    color:var(--my-dark-blue);
 }
 .right {
     float:right;
+}
+.link {
+    color:var(--my-middle-blue);
 }
 
 

@@ -20,6 +20,11 @@ Route::get('/order', function() {
     return view('order');
 });
 
+/*tukaj mora priti se id od uporabnika / prodajalca?*/
+Route::get('/orders', function() {
+    return view('orders');
+});
+
 /*tukaj mora priti se id od userja?*/
 Route::get('/cart', function() {
     return view('shopping-cart');
