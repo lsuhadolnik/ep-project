@@ -12,8 +12,31 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->middleware('verified');
+    return view('index');
+});
+
+/*tukaj mora priti se id od orderja*/
+Route::get('/order', function() {
+    return view('order');
+});
+
+/*tukaj mora priti se id od uporabnika / prodajalca?*/
+Route::get('/orders', function() {
+    return view('orders');
+});
+
+/*tukaj mora priti se id od userja?*/
+Route::get('/cart', function() {
+    return view('shopping-cart');
+});
+/*tukaj mora priti se id od userja*/
+Route::get('/profile', function() {
+    return view('profile');
+});
+
+Route::get('/users', function() {
+    return view('users');
+});
 
 Auth::routes(['verify' => true]);
 

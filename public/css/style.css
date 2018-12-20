@@ -1,0 +1,131 @@
+:root {
+    --my-dark-blue:#0D4F8B;
+    --my-middle-blue: #4682B4;
+    --my-light-blue:  #B2DFEE;
+}
+body h3, h4, h5, thead{
+    color:var(--my-dark-blue);
+}
+body tbody {
+    color:var(--my-middle-blue);
+}
+.btn-primary {
+    background-color:var(--my-dark-blue) !important;
+    border-color:var(--my-dark-blue) !important;
+}
+.my-navbar {
+    background-color: var(--my-dark-blue);
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
+    
+}
+.my-navbar a {
+    color: white !important;
+}
+.searchbar {
+    margin-right: 15px;
+    /* background-color: #74BBFB; */
+}
+.title {
+    color:var(--my-dark-blue);
+    margin-bottom: 12px;
+}
+.bestseller {
+    background-color:var(--my-middle-blue);
+    text-align:center;
+    border-radius: 2em !important;
+    color:white;
+}
+
+.bestseller img {
+    width: 100px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.list-item-product {
+    background-color: var(--my-light-blue);
+    color: var(--my-middle-blue);
+    border-radius: 1em;
+    margin-top:10px;
+}
+.list-img {
+    width: 100px;
+    margin:20px;
+}
+.list-name {
+    width: 100%;
+    margin-top:25px;
+}
+.list-price {
+    margin-top:25px;
+    text-align: center;
+}
+.list-details {
+    width:100%;
+}
+
+.list-producer {
+    width:50%;
+    float:left;
+}
+.list-order-count {
+    width: 50%;
+    float:right;
+    text-align: right;
+}
+.list-quantity {
+    margin-top:25px;
+}
+.list-quantity-number {
+    border: 1px solid var(--my-middle-blue);
+    border-radius: 0.25em;
+    text-align: center;
+    font-size: 20px;
+    width:50%;
+    background-color:white;
+    color: var(--my-middle-blue);
+}
+
+.add-delete-icon {
+    margin-left:-35px;
+    margin-top: 35px;
+}
+a.icon-button {
+   color:var(--my-middle-blue); 
+}
+.rating {
+    color:orange;
+    /* margin: 0 auto; */
+}
+
+.cart-title, .orders-title {
+    width:70%;
+    float:left;
+}
+.cart-total, .orders-select{
+    width:30%;
+    float:right;
+    text-align:right;
+    color:var(--my-dark-blue);
+}
+.orders-select option{
+    color:var(--my-dark-blue);
+}
+.right {
+    float:right;
+}
+.link {
+    color:var(--my-middle-blue);
+}
+.user-profile, .user-password{
+    width:50%;
+    float:left;
+}
+.user-profile input, .user-password input{
+    margin:5px;
+}
+
+
+
