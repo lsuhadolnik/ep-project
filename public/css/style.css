@@ -123,7 +123,7 @@ a.icon-button {
     width:50%;
     float:left;
 }
-.user-profile input, .user-password input{
+.user-profile input, .user-password input, .add-product input, textarea{
     margin:5px;
 }
 
@@ -158,6 +158,12 @@ a.icon-button {
 .stars{
     margin-left:60px;
     cursor:pointer;
+}
+.add-product-table{
+    width:50%;
+}
+.add-product-table textarea{
+    width:100%;
 }
 
 

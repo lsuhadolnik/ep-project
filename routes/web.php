@@ -43,6 +43,10 @@ Route::get('/product', function() {
     return view('product');
 });
 
+Route::get('/addProduct', function() {
+    return view('add-product');
+});
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
