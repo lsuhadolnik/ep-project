@@ -26,7 +26,27 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        $prods = Product::where(["status" => "active"])->get();   
+        foreach($prods as $p)
+        {
+            $p->setAppends(['rating']);
+        }
+        return $prods;
+    }
+
+    public function show(Request $req, $product_id)
+    {
+        $p = Product::find($product_id);
+        $p->setAppends(['rating']);
+        return $p;
+    }
+
+    public function mostWanted(Request $req, $n = 5){
+        return Product::mostWanted($n);
+    }
+
+    public function topRated(Request $req, $n = 5) {
+        return Product::topRated($n);
     }
 
 

@@ -16,6 +16,7 @@ use \App\Product;
 |
 */
 
+/* User routes */
 Route::post('user', 'API\UsersController@store')->middleware('https');
 
 Route::group(['middleware' => ['https', 'auth.basic.once']], function() {
@@ -31,3 +32,10 @@ Route::group(['middleware' => ['https', 'auth.basic.once']], function() {
     Route::get('user/order/{order}/products', 'API\UsersController@getOrderProducts');
 
 });
+
+
+/* Product routes */
+Route::get('products', 'API\ProductsController@index');// Seznam vseh AKTIVNIH produktov.')
+Route::get('product/{id}', 'API\ProductsController@show'); // Informacije o produktu.
+Route::get('products/mostWanted/{n?}', 'API\ProductsController@mostWanted'); // Pridobi n najbolje prodajanih produktov. Upošteva tudi košarice.
+Route::get('products/topRated/{n?}', 'API\ProductsController@topRated'); // Pridobi n najbolje ocenjenih produktov.
