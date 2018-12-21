@@ -56,8 +56,15 @@ class UsersSeeder extends Seeder
         $u->email = "janez@ep.si";
         $u->phone = "031442546";
         $u->password = "janez";
-        $u->role_id = 3; // Administrator
+        $u->role_id = 3; // Stranka
         $u->save();
+
+        $u->rateProduct(1, 5, $u->id);
+        $u->rateProduct(2, 4, $u->id);
+        $u->rateProduct(3, 3, $u->id);
+        $u->rateProduct(4, 1, $u->id);
+        $u->rateProduct(6, 1, $u->id);
+        $u->rateProduct(5, 1, $u->id);
 
     }
 }

@@ -70,10 +70,8 @@ body tbody {
     width:50%;
     float:left;
 }
-.list-order-count {
-    width: 50%;
-    float:right;
-    text-align: right;
+.list-rating-count {
+    margin-top:15px;
 }
 .list-quantity {
     margin-top:25px;
@@ -86,6 +84,9 @@ body tbody {
     width:50%;
     background-color:white;
     color: var(--my-middle-blue);
+}
+.list-rating {
+    margin-top:25px;
 }
 
 .add-delete-icon {

@@ -9,59 +9,24 @@
             </div>
             <div class="container-fluid">
                 <div class="row justify-content-around">
-                    <div class="bestseller ">
-                        <div>
-                            <img src=" {{ asset('svg/test-image.png') }}" alt="slika izdelka" class="rounded">
+                    @foreach ($topProducts as $product)
+                        <div class="bestseller ">
+                            <div>
+                                <img src=" {{ asset('svg/no-image.png') }}" alt="slika izdelka" class="rounded">
+                            </div>
+                            <p>{{$product->name}}
+                                <br>
+                                {{$product->price}}$
+                            </p>
                         </div>
-                        <p>Ime izdelka
-                            <br>
-                            24.25$
-                        </p>
-                    </div>
-                    <div class="bestseller ">
-                        <div>
-                            <img src=" {{ asset('svg/test-image.png') }}" alt="slika izdelka" class="rounded">
-                        </div>
-                        <p>Ime izdelka
-                            <br>
-                            24.25$
-                        </p>
-                    </div>
-                    <div class="bestseller ">
-                        <div>
-                            <img src=" {{ asset('svg/test-image.png') }}" alt="slika izdelka" class="rounded">
-                        </div>
-                        <p>Ime izdelka
-                            <br>
-                            24.25$
-                        </p>
-                    </div>
-                    <div class="bestseller ">
-                        <div>
-                            <img src=" {{ asset('svg/test-image.png') }}" alt="slika izdelka" class="rounded">
-                        </div>
-                        <p>Ime izdelka
-                            <br>
-                            24.25$
-                        </p>
-                    </div>
-                    <div class="bestseller ">
-                        <div>
-                            <img src=" {{ asset('svg/test-image.png') }}" alt="slika izdelka" class="rounded">
-                        </div>
-                        <p>Ime izdelka
-                            <br>
-                            24.25$
-                        </p>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="">
-                @include('shared.list')
-            </div>
-            <div class="">
-                @include('shared.list')
-            </div>
+            @foreach ($products as $product)
+                <div class="">
+                    @include('shared.list')
+                </div>
+            @endforeach
         </div>
     </div>
 </div>

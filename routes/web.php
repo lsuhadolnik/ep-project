@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'MainController@show');
 
 /*tukaj mora priti se id od orderja*/
 Route::get('/order', function() {

@@ -19,10 +19,45 @@ class ProductsSeeder extends Seeder
         Producer::create(["name"=> "Electrolux", "description"=>"Electrolux shapes living for the better by reinventing taste, care and wellbeing experiences, making life more enjoyable and sustainable for millions of people."]);
 
         $p = new Product();
-        $p->name = "Test";
-        $p->description = "Test test";
+        $p->name = "Pečica";
+        $p->description = "To je super pečica";
         $p->producer_id = 1;
-        $p->price = 12.02;
+        $p->price = 112.02;
+        $p->save();
+
+        $p = new Product();
+        $p->name = "Mikrovalovka";
+        $p->description = "To je super mikrovalovka";
+        $p->producer_id = 1;
+        $p->price = 102.02;
+        $p->save();
+
+        $p = new Product();
+        $p->name = "Pralni stroj";
+        $p->description = "To je super pralni stroj";
+        $p->producer_id = 2;
+        $p->price = 120.02;
+        $p->save();
+
+        $p = new Product();
+        $p->name = "Pomivalni stroj";
+        $p->description = "To je super pomivalni stroj";
+        $p->producer_id = 2;
+        $p->price = 125.02;
+        $p->save();
+
+        $p = new Product();
+        $p->name = "Parna pečica";
+        $p->description = "To je super parna pečica";
+        $p->producer_id = 1;
+        $p->price = 123.02;
+        $p->save();
+
+        $p = new Product();
+        $p->name = "Štedilnik";
+        $p->description = "To je super štedilnik";
+        $p->producer_id = 1;
+        $p->price = 129.02;
         $p->save();
 
     }

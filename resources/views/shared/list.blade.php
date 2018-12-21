@@ -2,27 +2,35 @@
     <div class="container-fluid list-item-product">
         <div class="row">
             <div class="col-2">
-                <img src=" {{ asset('svg/test-image.png') }}" alt="slika izdelka" class="rounded list-img"  />
+                <img src=" {{ asset('svg/no-image.png') }}" alt="slika izdelka" class="rounded list-img"  />
             </div>
-            <div class="col-4 ">
+            <div class="col-3 ">
                 <div class="list-name">
-                    <h3>Super izdelek 3.0</h3>
+                    <h3> {{ $product->name }} </h3>
                 </div>
                 <div class="list-details">
                     <div class="list-producer">
-                        <p>Proizvajalec</p>
+                        <p> {{ $product->producer }}</p>
                     </div>
-                    <div class="list-order-count">
-                        <p>160 nakupov</p>
-                    </div> 
+                    
                 </div>
             </div>
-            <div class="col-2 offset-1">
+            @if( $product->rating->num_ratings > 0)
+                <div class="col-2 list-rating">
+                    @include('shared.stars')
+                    <div class="list-rating-count">
+                        <p> {{$product->rating->num_ratings}} ocen</p>
+                    </div> 
+                </div>
+            @else
+                <div class="col-2"></div>
+            @endif
+            <div class="col-2">
                 <div class="list-price">
-                    <h3>28.56$</h3>
+                    <h3>{{ $product->price }} $</h3>
                 </div>
 
-                @include('shared.stars')
+                
             </div>
             <div class="col-2">
                 <div class="list-quantity">
