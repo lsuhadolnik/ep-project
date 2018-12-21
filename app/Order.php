@@ -113,6 +113,10 @@ class Order extends Model
 
 	public function modifyOrderProduct($product_id, $quantity){
 		
+		if($this->status != 'draft') {
+			return ["status" => "Naročilo je že oddano. Ne da se spreminjati artiklov."];
+		}
+
 		// Če order še ne obstaja, ga ustvari
 		if(!$this->id) {
 			$this->save();

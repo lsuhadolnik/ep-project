@@ -14,6 +14,7 @@ $c->modifyOrderProduct($product_id, $quantity);
 ```
 
 - [TODO] Iskanje: `Product::search($query)`
+
 - Oddaja naročila / Sprememba statusa naročila: `Order::find(1)->changeStatus($status)`
 
 
