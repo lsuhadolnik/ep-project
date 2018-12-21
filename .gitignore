@@ -32,3 +32,5 @@ storage/*.key
 
 .gitmodules
 laradock/
+
+certs/*

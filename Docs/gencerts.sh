@@ -5,7 +5,7 @@ state="Ljubljana"
 loc="Ljubljana"
 org="EP"
 ou="IT"
-cn="*.lovro.rocks"
+cn="hello.local"
 
 str="/C=$country/ST=$state/L=$loc/O=$org/OU=$ou"
 
@@ -20,8 +20,7 @@ keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
 subjectAltName = @alt_names
 
 [alt_names]
-DNS.1 = *.lovro.rocks
-DNS.2 = lovro.rocks
+DNS.1 = $cn
 HERE
 )
 echo "$v3ext" > "v3.ext"
@@ -36,7 +35,7 @@ openssl req -new -x509 -days 365 -key ca.key -out ca.crt \
 # Create the Server Key
 openssl genrsa -out server.key 1024
 openssl req -new -key server.key -out server.csr \
--subj "$str/commonName=*.lovro.rocks/"
+-subj "$str/commonName=$cn/"
 
 # We're self signing our own server cert here.  This is a no-no in production.
 openssl x509 -req -days 365 -in server.csr \

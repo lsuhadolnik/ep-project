@@ -9,15 +9,17 @@ class Order extends Model
 {
     //
 
-	protected $fillable = ['status', 'user_id'];
+	protected $fillable = ['user_id'];
 	protected $with = ['products'];
-	protected $appends = ['totalPrice'];
-	protected $hidden = ['pivot'];
+	protected $appends = ['totalPrice', 'products'];
+	protected $hidden = ['pivot', 'products'];
 
 	public function products() 
 	{
 		return $this->belongsToMany('App\Product', 'order_products')->withPivot('quantity');
 	}
+
+	// @TODO Modify SetStatus Setter...
 
 	public function getProductsAttribute()
 	{
@@ -59,6 +61,7 @@ class Order extends Model
 
 	public function modifyOrderProduct($product_id, $quantity){
 		
+		// Če order še ne obstaja, ga ustvari
 		if(!$this->id) {
 			$this->save();
 		}
@@ -66,7 +69,13 @@ class Order extends Model
 		// Če je quantity <= 0 -> odstrani iz košarice, če obstaja
 		if($quantity <= 0) 
 		{
-			$this->products()->detach($product_id);
+			$s = $this->products()->detach($product_id);
+			if($s == 1)
+			{
+				$s = "Odstranjeno.";
+			}
+				
+			return ["status" => $s, "action"=>"Remove order product $product_id."];
 		}
 		// Če je quantity > 0 -> dodaj/posodobi košarico
 		else 
@@ -74,12 +83,25 @@ class Order extends Model
 			$p = $this->products()->find($product_id);
 			if($p == null) 
 			{
-				$this->products()->attach($product_id, ['quantity' => $quantity]);
+				$s = $this->products()->attach($product_id, ['quantity' => $quantity]);
+				if(!$s)
+				{
+					$s = "Dodano.";
+				}
+				return ["status" => $s, "action"=>"Add new order product $product_id."];
 			}
 			else
 			{
-				$p->pivot->quantity = $quantity;
-				$p->save();
+				$s = $this->products()->updateExistingPivot($product_id, ['quantity' => $quantity]);
+				if($s == 1)
+				{
+					$s = "Količina posodobljena.";
+				}
+				else if($s == 0)
+				{
+					$s = "Količina ostaja enaka.";
+				}
+				return ["status" => $s, "action"=>"Change quantity of order product $product_id."];
 			}
 			
 		}

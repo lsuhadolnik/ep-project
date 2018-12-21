@@ -11,12 +11,10 @@ class Product extends Model
 {
 
 	// Add the computed attributes to the JSON
-	protected $appends = ['images', 'producer', 'rating', 'quantity'];
+	protected $appends = ['images', 'rating', 'quantity'];
 	// Preload the relationships to save some bytes
-	protected $with = ['producer', 'images'];	
-
-	//protected $hidden = ['pivot'];
-	
+	protected $with = ['producer', 'images'];
+	protected $hidden = ['producer_id', 'producer', 'status', 'created_at', 'updated_at', 'pivot'];
 
 	// Define relationships
 	public function images(){
@@ -25,6 +23,11 @@ class Product extends Model
 
 	public function producer(){
 		return $this->belongsTo('App\Producer');
+	}
+
+	public function getProducerNameAttribute()
+	{
+
 	}
 
 	// Computed attributes Like-A-Boss :)

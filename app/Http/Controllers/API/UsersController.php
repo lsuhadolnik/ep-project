@@ -69,24 +69,58 @@ class UsersController extends Controller
         $data = $request->all();
         if(isset($data['rating']) && !empty($data['rating']))
         {
-            Auth::user()->rateProduct($product, $data['rating']);
-            return response()->json(["status"=>"OK"], 200);
+            $resp = Auth::user()->rateProduct($product, $data['rating']);
+            return response()->json(["status" => $resp], 200);
         }
-        return response()->json("Error. Please provide rating in the request body.", 400);
+        return response()->json(["status"=>"Napaka. Prosim podaj oceno v telesu zahtevka."], 400);
     }
 
     public function shoppingCart(Request $request) 
     {
         $user = Auth::user();
-        return response()->json($user->shoppingCart());
+        $s = $user->shoppingCart();
+        $s->setHidden([]);
+        $s->setVisible(["id", "status", "updated_at", "products", "totalPrice"]);
+        
+        return response()->json($s->append("products")->toArray());
     }
 
-    public function cartProduct(Request $request, $product_id) 
+    public function modifyOrderProduct(Request $request, $product_id) 
     {
-        $user = Auth::user();
-        $o = $u->shoppingCart();
-        
-        return response()->json($user->shoppingCart());
+        $data = $request->all();
+        if(isset($data['quantity']) && !empty($data['quantity']))
+        {
+            $quantity = $data['quantity'];
+            $resp = Auth::user()->shoppingCart()->modifyOrderProduct($product_id, $quantity);
+            return response()->json($resp, 200);
+        }
+        return response()->json(["status"=>"Napaka. Prosim podaj količino v telesu zahtevka."], 400);
+    }
+
+    public function deleteOrderProduct(Request $req, $product_id){
+
+        $resp = Auth::user()->shoppingCart()->modifyOrderProduct($product_id, -1);
+        return response()->json($resp, 200);
+
+    }
+
+    public function getOrders(Request $req)
+    {
+        // - **GET /api/user/orders** (HTTPS, AUTH) Pregled naročil uporabnika
+        return Order::where(["user_id" => Auth::user()->id])->get();
+    }
+
+    public function getOrderProducts(Request $req, $order_id)
+    {
+
+        $order = Order::where(["id" => $order_id, "user_id"=> Auth::user()->id])->first();
+        if(!$order)
+        {
+            return [];
+        }
+
+        $products = $order->products;
+        return response()->json($products);
     }
 
 }

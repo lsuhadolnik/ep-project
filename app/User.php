@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'address', 'email', 'phone', 'password', 'status'
+        'name', 'surname', 'address', 'email', 'phone', 'password'
     ];
 
     protected $attributes = [
@@ -127,14 +127,21 @@ class User extends Authenticatable
 
     public function rateProduct($product_id, $rating){
 
+        $rating = min($rating, 5);
+        $rating = max($rating, 0);
+
+        
+
         try {
-            return Rating::create([
-                'user_id'=>$this->id,
+            
+            return Rating::updateOrCreate([
+                'user_id'=> $this->id,
                 'product_id'=>$product_id,
-                'rating'=>$rating
-            ]);
+            ], ["rating" => $rating]);
+
         } catch(Exception $e){
-            return false;
+            return var_dump($e);
+            return $e;
         }
         
     }
