@@ -30,6 +30,8 @@ Route::group(['middleware' => ['https', 'auth.basic.once']], function() {
     Route::delete('user/shoppingCart/{product_id}', 'API\UsersController@deleteOrderProduct');
     Route::get('user/orders', 'API\UsersController@getOrders');
     Route::get('user/order/{order}/products', 'API\UsersController@getOrderProducts');
+    
+    Route::post('user/shoppingCart/submit', 'API\UsersController@submitShoppingCart');
 
 });
 

@@ -238,6 +238,19 @@ Response:
 - **GET /api/products/mostWanted/(n)** Pridobi n najbolje prodajanih produktov
 - **GET /api/products/topRated/(n)** Pridobi n najbolje ocenjenih produktov
 
+- **PUT /api/user/shoppingCart/submit** (HTTPS, AUTH) Oddaj naročilo
+
+Response:
+```json
+{
+    "status": "Uspešno sem spremenil stanje naročila."
+}
+```
+
+# Lokacije, ki še bodo implementirane
+
+- **GET /api/products/search/($query)** Poišči produkte
+
 
 
 ### Vse informacije artikla
