@@ -11,7 +11,7 @@ class Product extends Model
 {
 
 	// Add the computed attributes to the JSON
-	protected $appends = ['images', 'rating', 'quantity'];
+	protected $appends = ['images', 'producerName', 'rating', 'quantity', 'times_bought'];
 	// Preload the relationships to save some bytes
 	protected $with = ['producer', 'images'];
 	protected $hidden = ['producer_id', 'producer', 'status', 'created_at', 'updated_at', 'pivot'];
@@ -25,10 +25,6 @@ class Product extends Model
 		return $this->belongsTo('App\Producer');
 	}
 
-	public function getProducerNameAttribute()
-	{
-
-	}
 
 	// Computed attributes Like-A-Boss :)
 	public function getImagesAttribute() {
@@ -39,11 +35,11 @@ class Product extends Model
 		if(!isset($this->pivot)){
 			return 0;
 		}
-		
+
 		return $this->pivot->quantity;
 	}
 
-	public function getProducerAttribute(){
+	public function getProducerNameAttribute(){
 		$p = $this->producer()->first();
 		if($p){
 			return $p->name;
@@ -53,7 +49,6 @@ class Product extends Model
 	}
 
 	public function getRatingAttribute(){
-
 
 		$rating_info = DB::select(
 			"SELECT 
@@ -80,21 +75,45 @@ class Product extends Model
 
 	}
 
+	public function getTimesBoughtAttribute(){
+
+		$shopping_info = DB::select(
+			"SELECT 
+				COUNT(*) AS num
+			FROM order_products op
+			JOIN orders o ON o.id = op.order_id 
+
+			WHERE o.status in ('fulfilled', 'cancelled')
+				AND op.product_id = ?", [$this->id]);
+
+		if($shopping_info == null){
+			return 0;
+		}
+
+		if(count($shopping_info) == 0){
+			return 0;
+		}
+
+		$shopping_info = $shopping_info[0];
+		return $shopping_info->num;
+
+	}
+
 	public static function mostWanted($n = 10)
 	{
 		$ids = DB::select("SELECT p.id AS id, SUM(op.quantity) AS quantity
 		FROM products p 
-        JOIN order_products op ON p.id = op.product_id
-        JOIN orders o ON o.id = op.order_id
-        
-        WHERE o.status != 'draft'
-        
+		JOIN order_products op ON p.id = op.product_id
+		JOIN orders o ON o.id = op.order_id
+
+		#WHERE o.status != 'draft'
+
 		GROUP BY p.id
 		ORDER BY SUM(op.quantity)
-        LIMIT ?", [$n]);
+		LIMIT ?", [$n]);
 
 		if($ids == null){
-			return null;
+			return ["status" => "Ni artiklov."];
 		}
 
 		$product_ids = [];

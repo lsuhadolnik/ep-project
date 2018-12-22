@@ -123,4 +123,12 @@ class UsersController extends Controller
         return response()->json($products);
     }
 
+    public function submitShoppingCart(Request $req) {
+
+        if(!Auth::user()->shoppingCart()->id)
+            return ["status" => "V košarici ni nobenega artikla."];
+
+        return Auth::user()->shoppingCart()->changeStatus('active');
+    }
+
 }

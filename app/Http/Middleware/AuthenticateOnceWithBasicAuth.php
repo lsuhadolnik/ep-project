@@ -15,7 +15,14 @@ class AuthenticateOnceWithBasicAuth
      */
     public function handle($request, $next)
     {
-        return Auth::onceBasic() ?: $next($request);
+        $r = Auth::onceBasic() ?: $next($request);
+        if($r){
+            if(Auth::user()->status == 'disabled'){
+                Auth::logout();
+                abort(401, "Uporabnik je blokiran");
+            }
+        }
+        return $r;
     }
 
 }

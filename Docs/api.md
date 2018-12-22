@@ -202,10 +202,73 @@ Response:
 ]
 ```
 
-## Lokacije, ki bodo implementirane
-
-
 - **GET /api/products/** Seznam vseh AKTIVNIH produktov.
+Response:
+```json
+[
+    {
+        "id": 2,
+        "name": "Test",
+        "description": "Test test",
+        "price": 12.02,
+        "rating": {
+            "num_ratings": 3,
+            "rating": "6.3333"
+        },
+        "images": []
+    }
+]
+```
+
 - **GET /api/products/(id)** Informacije o produktu.
+Response:
+```json
+{
+    "id": 2,
+    "name": "Test",
+    "description": "Test test",
+    "price": 12.02,
+    "rating": {
+        "num_ratings": 3,
+        "rating": "6.3333"
+    },
+    "images": []
+}
+```
 - **GET /api/products/mostWanted/(n)** Pridobi n najbolje prodajanih produktov
 - **GET /api/products/topRated/(n)** Pridobi n najbolje ocenjenih produktov
+
+- **PUT /api/user/shoppingCart/submit** (HTTPS, AUTH) Oddaj naročilo
+
+Response:
+```json
+{
+    "status": "Uspešno sem spremenil stanje naročila."
+}
+```
+
+# Lokacije, ki še bodo implementirane
+
+- **GET /api/products/search/($query)** Poišči produkte
+
+
+
+### Vse informacije artikla
+```json
+[
+    {
+        "id": 2,
+        "name": ...,
+        "description": ...,
+        "price": ...,
+        "images": <Array slik>,
+        "producerName": ...,
+        "rating": {
+            "num_ratings": ...,
+            "rating": ...
+        },
+        "quantity": ...To ignoriraj, kjer nima smisla,
+        "times_bought": ...
+    }
+]
+```

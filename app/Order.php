@@ -59,8 +59,64 @@ class Order extends Model
 
 	}
 
+	public function changeStatus($status)
+	{
+		switch ($status)
+		{
+			case 'draft':
+				
+				$this->status = 'draft';
+				$this->submitted_at = null;
+				$this->cancelled_at = null;
+				$this->fulfilled_at = null;
+				$this->save();
+
+			break;
+
+			case 'active':
+
+				if($this->status == 'draft')
+				{
+					$this->status = 'active';
+					$this->submitted_at = date("Y-m-d H:i:s");
+					$this->save();
+				}
+				else return ["status"=>"Nisem oddal naročila, ker ni v pravem stanju (".$this->status.")"];
+				
+			break;
+
+			case 'fulfilled':
+
+				if($this->status == 'active'){
+					$this->status = 'fulfilled';
+					$this->fulfilled_at = date("Y-m-d H:i:s");
+					$this->save();
+				}
+				else return ["status"=>"Nisem izpolnil naročila, ker ni v pravem stanju (".$this->status.")"];
+
+			break;
+
+			case 'cancelled':
+
+				if($this->status == 'fulfilled' || $this->status == 'active'){
+					$this->status = 'active';
+					$this->submitted_at = date("Y-m-d H:i:s");
+					$this->save();
+				}
+				else return ["status"=>"Nisem preklical naročila, ker ni v pravem stanju (".$this->status.")"];
+
+			break;
+		}
+
+		return ["status"=>"Uspešno sem spremenil stanje naročila."];
+	}
+
 	public function modifyOrderProduct($product_id, $quantity){
 		
+		if($this->status != 'draft') {
+			return ["status" => "Naročilo je že oddano. Ne da se spreminjati artiklov."];
+		}
+
 		// Če order še ne obstaja, ga ustvari
 		if(!$this->id) {
 			$this->save();
