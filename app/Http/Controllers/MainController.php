@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use \App\Product;
 
 use \App\Http\Controllers\Controller;
@@ -30,6 +31,7 @@ class MainController extends Controller
         return view('index', [
             'products' => Product::all(),
             'topProducts' => Product::topRated(5)
+
         ]);
     }
 

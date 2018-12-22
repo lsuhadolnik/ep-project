@@ -6,10 +6,11 @@
         <div class="col-lg-12">
 
             <h3 class="cart-title">Košarica</h3>
-            <h5 class="cart-total">Skupaj: 30.00$</h5>
+            <h5 class="cart-total">Skupaj: {{$price}} $</h5>
             <br><br>
-            @include('shared.list')
-            @include('shared.list')
+            @foreach ($products as $product)
+                @include('shared.list')
+            @endforeach
             <br><br>
             <button class="btn btn-primary right">Oddaj naročilo</button>
         </div>

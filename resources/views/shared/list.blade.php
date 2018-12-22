@@ -35,19 +35,30 @@
             @guest
                 <div class="col-3"></div>
             @else
-                <div class="col-2">
-                    <div class="list-quantity">
-                        <h6>Količina</h6>
+                @if(Route::currentRouteName() == 'showcart')
+                    <div class="col-3">
+                        <form id="cart-form" action="{{ route('cart') }}" method="POST" >
+                            {{ csrf_field() }}
+                            
+                            <input type="text" name="product_id" value="{{ $product->id }}" hidden>
+                            <div style="width:60%; float:left">
+                                <div class="list-quantity">
+                                    <h6>Količina</h6>
+                                </div>
+                                
+                                <input type="text" class="list-quantity-number" id="list-quantity-number" name="quantity" value=" {{  $product->quantity  }}">
+                            </div>    
+                            
+                            <div style="width:40%; float:left;">
+                                <a class="icon-button" href="{{ route('cart') }}" id="add-to-cart">
+                                    <i class="fas fa-plus-circle fa-3x add-delete-icon" ></i>
+                                </a>
+                            </div>
+
+                            
+                        </form> 
                     </div>
-                    
-                    <input type="text" class="list-quantity-number" name="quantity" value="0">
-                    
-                </div>
-                <div class=col-1>
-                    <a class="icon-button" href="plus">
-                        <i class="fas fa-plus-circle fa-3x add-delete-icon" ></i>
-                    </a>
-                </div>
+                @endif
             @endguest    
         </div>
     </div>

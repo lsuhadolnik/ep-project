@@ -17,7 +17,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+    <script src="{{ asset('js/scripts.js') }}" defer></script>
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -69,16 +69,24 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('cart') }}">
+                                        {{ __('Košarica') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Odjava') }}
                                     </a>
-
+                                    <form id="cart-navbar" action="{{ route('cart') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    
                                 </div>
+
                             </li>
                         @endguest
                     </ul>
