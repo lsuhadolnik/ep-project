@@ -32,19 +32,23 @@
 
                 
             </div>
-            <div class="col-2">
-                <div class="list-quantity">
-                    <h6>Količina</h6>
+            @guest
+                <div class="col-3"></div>
+            @else
+                <div class="col-2">
+                    <div class="list-quantity">
+                        <h6>Količina</h6>
+                    </div>
+                    
+                    <input type="text" class="list-quantity-number" name="quantity" value="0">
+                    
                 </div>
-                
-                <input type="text" class="list-quantity-number" name="quantity" value="0">
-                
-            </div>
-            <div class=col-1>
-                <a class="icon-button" href="plus">
-                    <i class="fas fa-plus-circle fa-3x add-delete-icon" ></i>
-                </a>
-            </div>    
+                <div class=col-1>
+                    <a class="icon-button" href="plus">
+                        <i class="fas fa-plus-circle fa-3x add-delete-icon" ></i>
+                    </a>
+                </div>
+            @endguest    
         </div>
     </div>
 </div>

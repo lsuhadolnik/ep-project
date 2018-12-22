@@ -45,6 +45,8 @@ Route::get('/addProduct', function() {
     return view('add-product');
 });
 
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
