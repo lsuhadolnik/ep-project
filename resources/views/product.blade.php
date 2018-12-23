@@ -51,7 +51,7 @@
     </div>
     <br>
     <div class="row justify-content-end">
-        <form id="cart-form" action="{{ route('cart') }}" method="POST" >
+        <form id="cart-form{{$product->id}}" action="{{ route('cart') }}" method="POST" >
             {{ csrf_field() }}
             <input type="text" name="product_id" value="{{ $product->id }}" hidden>
             <div class="col-lg-12">
@@ -60,7 +60,7 @@
                 <input type="text" name="quantity" class="product-quantity-number" value=" {{ $quantity }} " id="quantity{{$product->id}}">
             </div>
             <br><br>
-            <button class="btn btn-primary right" id="{{$product->id}}">Dodaj v košarico</button>
+            <button class="btn btn-primary right quantity-button" id="{{$product->id}}">Dodaj v košarico</button>
         </form>
     </div>
 </div>
