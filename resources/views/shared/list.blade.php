@@ -7,7 +7,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-3">
-                                <img src=" {{ asset('svg/no-image.png') }}" alt="slika izdelka" class="rounded list-img"  />
+                                <img src=" {{ ($product->images->first() !== null) ? $product->images->first()->path : asset('svg/no-image.png') }}" alt="slika izdelka" class="rounded list-img"  />
                             </div>
                             <div class="col-4 ">
                                 <div class="list-name">
@@ -67,7 +67,7 @@
                             <form action="/cart/{{ $product->id }}" method="POST" id="delete-form{{$product->id}}">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <i class="far fa-times-circle fa-2x delete-icon" onclick="document.getElementById('delete-form{{$product->id}}').submit();"></i>
+                                    <i class="fas fa-times fa-2x delete-icon" onclick="document.getElementById('delete-form{{$product->id}}').submit();"></i>
                             </form>
                         </div>
 

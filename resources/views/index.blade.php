@@ -13,7 +13,7 @@
                     <a href="{{ route('showproduct', ['id' => $product->id]) }}" class="product-link">
                         <div class="bestseller ">
                             <div>
-                                <img src=" {{ asset('svg/no-image.png') }}" alt="slika izdelka" class="rounded">
+                                <img src=" {{ ($product->images->first() !== null) ? $product->images->first()->path : asset('svg/no-image.png') }}" alt="slika izdelka" class="rounded">
                             </div>
                             <p style="padding-bottom:10px;">{{$product->name}}
                                 <br>

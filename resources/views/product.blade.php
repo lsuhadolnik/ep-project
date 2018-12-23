@@ -8,23 +8,29 @@
             <h3>Artikel</h3>
             <br>
             <div>
-                <div class="carousel-stars">
+                <div class="carousel-stars" >
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            @foreach($product->images as $image)
+                                @if ($loop->first)
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $image->id }}" class="active"></li>
+                                @else
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $image->id }}"></li> 
+                                @endif
+                            @endforeach
                         </ol>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                            <img class="d-block w-100" src=" {{ asset('svg/test-image.png') }}" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                            <img class="d-block w-100" src=" {{ asset('svg/test-image.png') }}" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                            <img class="d-block w-100" src=" {{ asset('svg/test-image.png') }}" alt="Third slide">
-                            </div>
+                            @foreach($product->images as $image)
+                                @if($loop->first)
+                                    <div class="carousel-item active">
+                                    <img class="d-block w-100" src=" {{ $image->path }}" alt="First slide">
+                                    </div>
+                                @else
+                                    <div class="carousel-item ">
+                                    <img class="d-block w-100" src=" {{ $image->path }}" alt="First slide">
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
