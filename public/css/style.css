@@ -13,6 +13,10 @@ body tbody {
     background-color:var(--my-dark-blue) !important;
     border-color:var(--my-dark-blue) !important;
 }
+.btn-secondary {
+    background-color:var(--my-middle-blue) !important;
+    border-color:var(--my-middle-blue) !important;
+}
 .my-navbar {
     background-color: var(--my-dark-blue);
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
@@ -177,6 +181,14 @@ a.icon-button {
 }
 .add-product-table textarea{
     width:100%;
+}
+.rating-input{
+    width:100px;
+    border: 1px solid var(--my-middle-blue);
+    border-radius: 0.25em;
+}
+.rating-modal, .rating-modal option{
+    color:var(--my-dark-blue);
 }
 
 

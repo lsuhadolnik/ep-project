@@ -71,17 +71,29 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Ocenjevanje izdelka</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:var(--my-middle-blue);">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        @include('shared.stars')
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
-        <button type="button" class="btn btn-primary">Shrani oceno</button>
-      </div>
+      <form action="/product/{{$product->id}}/rating" method="POST" id="rate-form">
+        {{ csrf_field() }}
+        <div class="modal-body rating-modal" >
+            Izberite oceno:
+            
+                <select name="rating" class="rating-input">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+            <button type="button" class="btn btn-primary" type="submit" onclick="document.getElementById('rate-form').submit();">Shrani oceno</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

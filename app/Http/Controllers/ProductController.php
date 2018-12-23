@@ -48,4 +48,14 @@ class ProductController extends Controller
         return redirect('/cart');
 
     }
+
+    public function rate($product_id, Request $request) {
+        
+        $user = Auth::user();
+        $rating = $request->input('rating');
+        
+        $user->rateProduct($product_id, $rating);
+
+        return redirect('/product/'.$product_id);
+    }
 }

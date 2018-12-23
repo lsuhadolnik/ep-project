@@ -38,6 +38,7 @@ Route::get('/users', function() {
 });
 
 Route::get('/product/{id}', 'ProductController@show')->name('showproduct');
+Route::post('/product/{id}/rating', 'ProductController@rate')->name('rate');
 
 Route::get('/addProduct', function() {
     return view('add-product');
