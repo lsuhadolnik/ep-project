@@ -10,7 +10,7 @@
                 </div>
                 <div class="list-details">
                     <div class="list-producer">
-                        <p> {{ $product->producer }}</p>
+                        <p> {{ $product->producer->name }}</p>
                     </div>
                     
                 </div>

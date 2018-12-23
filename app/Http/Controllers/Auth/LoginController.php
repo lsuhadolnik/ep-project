@@ -6,9 +6,6 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Validation\ValidationException;
 
@@ -44,12 +41,10 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-<<<<<<< HEAD
     public function logout(Request $request) {
         Auth::logout();
         return redirect('/');
     }
-=======
     protected function attemptLogin(Request $request)
     {
         return Auth::attempt(
@@ -64,5 +59,4 @@ class LoginController extends Controller
         ]);
     }
 
->>>>>>> 2d659810f92535d87c36f72fa97a453b056f1520
 }

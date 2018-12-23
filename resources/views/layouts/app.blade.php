@@ -17,7 +17,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/scripts.js') }}" defer></script>
+    <script src="{{ asset('js/scripts.js?v=2') }}" defer></script>
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -93,6 +93,16 @@
                 </div>
             </div>
         </nav>
+        <br>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="alert alert-danger" role="alert" style="display:none; margin-bottom:0px;" id="errors-message">
+                        <!-- id="errors-block" -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <main class="py-4">
             @yield('content')
