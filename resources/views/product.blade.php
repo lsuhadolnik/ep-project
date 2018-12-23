@@ -50,6 +50,7 @@
         </div>
     </div>
     <br>
+    @auth
     <div class="row justify-content-end">
         <form id="cart-form{{$product->id}}" action="{{ route('cart') }}" method="POST" >
             {{ csrf_field() }}
@@ -63,8 +64,10 @@
             <button class="btn btn-primary right quantity-button" id="{{$product->id}}">Dodaj v košarico</button>
         </form>
     </div>
+    @endauth
 </div>
 
+@auth
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -97,4 +100,5 @@
     </div>
   </div>
 </div>
+@endauth
 @endsection

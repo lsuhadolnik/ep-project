@@ -13,17 +13,21 @@ class ProductController extends Controller
 {
     public function show($product_id)
     {
-        $user = Auth::user()->id;
         $quantity = 0;
 
-        if(isset(Order::shoppingCart($user)->id)) {
-            $k = Order::shoppingCart($user);
+        $user = Auth::user();
+        if ($user != null) {
+            $user_id = $user->id;
+            if(isset(Order::shoppingCart($user_id)->id)) {
+            $k = Order::shoppingCart($user_id);
             $product = Order::find($k->id)->products->find($product_id);
             if ($product != null) {
                 $quantity = $product->quantity;
             }
             
         }
+        }
+        
         return view('product', [
             'product' => Product::find($product_id),
             'quantity' => $quantity
