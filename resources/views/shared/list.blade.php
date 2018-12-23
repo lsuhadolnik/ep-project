@@ -1,6 +1,8 @@
 <div style="margin-top:20px">
     <div class="container-fluid list-item-product">
             <div class="row">
+                
+
                 <a href="{{ route('showproduct', ['id' => $product->id]) }}" class="product-link col-9">
                     <div class="container-fluid">
                         <div class="row">
@@ -57,15 +59,21 @@
                                 
                                 <div style="width:40%; float:left;">
                                     <a class="icon-button add-to-cart" href="{{ route('cart') }}" >
-                                        <i class="fas fa-plus-circle fa-3x add-delete-icon " id="{{$product->id}}"></i>
+                                        <i class="fas fa-plus fa-3x add-icon " id="{{$product->id}}"></i>
                                     </a>
                                 </div>
-
                                 
                             </form> 
+                            <form action="/cart/{{ $product->id }}" method="POST" id="delete-form{{$product->id}}">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <i class="far fa-times-circle fa-2x delete-icon" onclick="document.getElementById('delete-form{{$product->id}}').submit();"></i>
+                            </form>
                         </div>
+
                     @endif
-                @endguest    
+                @endguest 
+                   
             </div>
 
     </div>

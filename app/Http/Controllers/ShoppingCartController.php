@@ -64,5 +64,12 @@ class ShoppingCartController extends Controller
 
     }
 
+    public function delete($id) {
+        $user = Auth::user()->id;
+        $cart = Order::shoppingCart($user)->id;
+        Order::find($cart)->modifyOrderProduct($id, 0);
+        return redirect('/cart');
+    }
+
 
 }

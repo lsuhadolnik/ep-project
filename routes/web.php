@@ -26,6 +26,7 @@ Route::get('/orders', function() {
 /*tukaj mora priti se id od userja?*/
 Route::get('/cart', 'ShoppingCartController@show')->name('showcart');
 Route::post('/cart', 'ShoppingCartController@add')->name('cart');
+Route::delete('/cart/{id}', 'ShoppingCartController@delete')->name('delcart');
 
 /*tukaj mora priti se id od userja*/
 Route::get('/profile', function() {
