@@ -43,7 +43,7 @@
                 @else
                     @if(Route::currentRouteName() == 'showcart')
                         <div class="col-3">
-                            <form id="cart-form" action="{{ route('cart') }}" method="POST" >
+                            <form id="cart-form{{$product->id}}" action="{{ route('cart') }}" method="POST" >
                                 {{ csrf_field() }}
                                 
                                 <input type="text" name="product_id" value="{{ $product->id }}" hidden>
@@ -52,12 +52,12 @@
                                         <h6>Količina</h6>
                                     </div>
                                     
-                                    <input type="text" class="list-quantity-number" id="list-quantity-number" name="quantity" value=" {{  $product->quantity  }}">
+                                    <input type="text" class="list-quantity-number" id="quantity{{$product->id}}" name="quantity" value=" {{  $product->quantity  }}">
                                 </div>    
                                 
                                 <div style="width:40%; float:left;">
-                                    <a class="icon-button" href="{{ route('cart') }}" id="add-to-cart">
-                                        <i class="fas fa-plus-circle fa-3x add-delete-icon" ></i>
+                                    <a class="icon-button add-to-cart" href="{{ route('cart') }}" >
+                                        <i class="fas fa-plus-circle fa-3x add-delete-icon " id="{{$product->id}}"></i>
                                     </a>
                                 </div>
 

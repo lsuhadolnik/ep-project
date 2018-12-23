@@ -51,13 +51,17 @@
     </div>
     <br>
     <div class="row justify-content-end">
-        <div class="col-lg-12">
-        <div class="quantity right">
-            <label for="quantity">Količina:</label>
-            <input type="text" name="quantity" class="product-quantity-number" value=" {{ $quantity }} ">
-        </div>
-        <br><br>
-        <button class="btn btn-primary right">Dodaj v košarico</button>
+        <form id="cart-form" action="{{ route('cart') }}" method="POST" >
+            {{ csrf_field() }}
+            <input type="text" name="product_id" value="{{ $product->id }}" hidden>
+            <div class="col-lg-12">
+            <div class="quantity right">
+                <label for="quantity">Količina:</label>
+                <input type="text" name="quantity" class="product-quantity-number" value=" {{ $quantity }} " id="quantity{{$product->id}}">
+            </div>
+            <br><br>
+            <button class="btn btn-primary right" id="{{$product->id}}">Dodaj v košarico</button>
+        </form>
     </div>
 </div>
 
