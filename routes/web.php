@@ -36,10 +36,7 @@ Route::get('/users', function() {
     return view('users');
 });
 
-/*tukaj mora priti se id od produkta*/
-Route::get('/product', function() {
-    return view('product');
-});
+Route::get('/product/{id}', 'ProductController@show')->name('showproduct');
 
 Route::get('/addProduct', function() {
     return view('add-product');

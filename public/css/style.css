@@ -90,7 +90,7 @@ body tbody {
 }
 
 .add-delete-icon {
-    margin-left:-35px;
+    margin-left:-5px;
     margin-top: 35px;
 }
 a.icon-button {
@@ -140,6 +140,10 @@ a.icon-button {
 
 .product p{
     color:var(--my-dark-blue);
+}
+.product-link, .product-link:hover {
+    text-decoration: none !important;
+    color: var(--my-middle-blue) !important;
 }
 
 .quantity label{
