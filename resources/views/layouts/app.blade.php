@@ -18,6 +18,11 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/scripts.js?v=4') }}" defer></script>
+
+    @if(Request::is('register'))
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+    @endif
+
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

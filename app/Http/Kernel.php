@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'https' => \App\Http\Middleware\RequireHTTPS::class,
 
         'cert' => \App\Http\Middleware\VerifyCert::class,
+        'check-recaptcha' => \App\Http\Middleware\CheckReCaptcha::class,
     ];
 
     /**

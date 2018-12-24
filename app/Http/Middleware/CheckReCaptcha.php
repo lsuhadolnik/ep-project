@@ -1,23 +1,25 @@
 <?php
 
-namespace App\Providers;
+namespace App\Http\Middleware;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Validator;
+use \App\User;
+use Illuminate\Support\Facades\Auth;
 
-class AppServiceProvider extends ServiceProvider
+class CheckReCaptcha
 {
     /**
-     * Bootstrap any application services.
+     * Handle an incoming request.
      *
-     * @return void
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
      */
-    public function boot()
+    public function handle($request, $next)
     {
-        //
-        Validator::extend('checkReCaptcha', function($attribute, $value, $parameters) {
-            
-            
+
+        $data = $request->all();
+        if(isset($data["g-recaptcha-response"])) {
+
             $secret_key = "6LdffoQUAAAAAHKcPTq3RXkRNOLBgJrqpMZ6frhU";
 
             //abort(400, "Sec: $secret_key, Val: $value");
@@ -34,20 +36,16 @@ class AppServiceProvider extends ServiceProvider
             ]);
             
             if($res->getStatusCode() != 200)
-                return false;
+                return abort(403, "Zahtevek ReCaptcha ni bil uspešen.");
             
             $body = json_decode($res->getBody()->getContents());
-            return $body->success;
-        }, "Preverjanje ReCaptcha ni bilo uspešno.");
-    }
+            if($body->success)
+            {
+                return $next($request);
+            }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
+        }
+        
+        else abort(403, "Zahtevano je preverjanje ReCaptcha");
     }
 }

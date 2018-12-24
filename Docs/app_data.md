@@ -64,3 +64,12 @@ Product::find($id)->images()->attach($image_id, [
 ```
 - Odstranjevanje slik iz produkta: `Product::find($id)->images()->detach($image_id)`
 - Brisanje slik `Image::find($id)->delete()`
+
+
+- Poštne številke:
+```php
+PostalCode::find(1352);
+
+PostalCode::create(["id"=>1352, "name"=>"Preserje"]);
+
+```
