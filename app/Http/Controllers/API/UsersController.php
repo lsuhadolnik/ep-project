@@ -75,6 +75,12 @@ class UsersController extends Controller
         return response()->json(["status"=>"Napaka. Prosim podaj oceno v telesu zahtevka."], 400);
     }
 
+    public function getRating(Request $request, $product)
+    {
+        $r = Auth::User()->getRating($product);
+        return response()->json($r);
+    }
+
     public function shoppingCart(Request $request) 
     {
         $user = Auth::user();

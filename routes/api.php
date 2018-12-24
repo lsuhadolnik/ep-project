@@ -25,6 +25,7 @@ Route::group(['middleware' => ['https', 'auth.basic.once']], function() {
     Route::get('user', 'API\UsersController@showMe');
     Route::put('user', 'API\UsersController@updateMe');
     Route::put('user/rate/{product_id}', 'API\UsersController@rateProduct');
+    Route::get('user/rate/{product_id}', 'API\UsersController@getRating');
     Route::get('user/shoppingCart', 'API\UsersController@shoppingCart');
     Route::put('user/shoppingCart/{product_id}', 'API\UsersController@modifyOrderProduct');
     Route::delete('user/shoppingCart/{product_id}', 'API\UsersController@deleteOrderProduct');
