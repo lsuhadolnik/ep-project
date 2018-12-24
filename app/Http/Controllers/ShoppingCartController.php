@@ -40,7 +40,9 @@ class ShoppingCartController extends Controller
         }
         else {
             return view('shopping-cart', [
-                'empty' => "Košarica je prazna"
+                'empty' => "Košarica je prazna",
+                'price' => 0,
+                'products' => []
             ]); 
         }
         
