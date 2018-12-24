@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'MainController@show');
 
 /*tukaj mora priti se id od orderja*/
 Route::get('/order', function() {
@@ -26,9 +24,10 @@ Route::get('/orders', function() {
 });
 
 /*tukaj mora priti se id od userja?*/
-Route::get('/cart', function() {
-    return view('shopping-cart');
-});
+Route::get('/cart', 'ShoppingCartController@show')->name('showcart');
+Route::post('/cart', 'ShoppingCartController@add')->name('cart');
+Route::delete('/cart/{id}', 'ShoppingCartController@delete')->name('delcart');
+
 /*tukaj mora priti se id od userja*/
 Route::get('/profile', function() {
     return view('profile');
@@ -38,14 +37,14 @@ Route::get('/users', function() {
     return view('users');
 });
 
-/*tukaj mora priti se id od produkta*/
-Route::get('/product', function() {
-    return view('product');
-});
+Route::get('/product/{id}', 'ProductController@show')->name('showproduct');
+Route::post('/product/{id}/rating', 'ProductController@rate')->name('rate');
 
 Route::get('/addProduct', function() {
     return view('add-product');
 });
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 Auth::routes(['verify' => true]);
 

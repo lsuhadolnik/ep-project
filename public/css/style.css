@@ -13,13 +13,17 @@ body tbody {
     background-color:var(--my-dark-blue) !important;
     border-color:var(--my-dark-blue) !important;
 }
+.btn-secondary {
+    background-color:var(--my-middle-blue) !important;
+    border-color:var(--my-middle-blue) !important;
+}
 .my-navbar {
     background-color: var(--my-dark-blue);
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
     box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
     
 }
-.my-navbar a {
+.navbar-brand, .nav-link {
     color: white !important;
 }
 .searchbar {
@@ -70,10 +74,8 @@ body tbody {
     width:50%;
     float:left;
 }
-.list-order-count {
-    width: 50%;
-    float:right;
-    text-align: right;
+.list-rating-count {
+    margin-top:15px;
 }
 .list-quantity {
     margin-top:25px;
@@ -87,10 +89,21 @@ body tbody {
     background-color:white;
     color: var(--my-middle-blue);
 }
+.list-rating {
+    margin-top:25px;
+}
 
-.add-delete-icon {
-    margin-left:-35px;
+.add-icon {
+    margin-left:-5px;
     margin-top: 35px;
+}
+.delete-icon{
+    position:absolute; 
+    margin-left:-25px; 
+    margin-top:10px;
+}
+.delete-icon:hover{
+    cursor:pointer;
 }
 a.icon-button {
    color:var(--my-middle-blue); 
@@ -140,6 +153,10 @@ a.icon-button {
 .product p{
     color:var(--my-dark-blue);
 }
+.product-link, .product-link:hover {
+    text-decoration: none !important;
+    color: var(--my-middle-blue) !important;
+}
 
 .quantity label{
     color:var(--my-dark-blue);
@@ -164,6 +181,14 @@ a.icon-button {
 }
 .add-product-table textarea{
     width:100%;
+}
+.rating-input{
+    width:100px;
+    border: 1px solid var(--my-middle-blue);
+    border-radius: 0.25em;
+}
+.rating-modal, .rating-modal option{
+    color:var(--my-dark-blue);
 }
 
 
