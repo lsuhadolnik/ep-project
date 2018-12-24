@@ -247,6 +247,19 @@ Response:
 }
 ```
 
+- **GET /api/user/rate/{product}** (HTTPS, AUTH) Poglej oceno artikla za uporabnika
+Response:
+```json
+{
+    "rating": 2
+}
+```
+Če še ni ocenil produkta dobiš prazen objekt:
+Response:
+```json
+{}
+```
+
 # Lokacije, ki še bodo implementirane
 
 - **GET /api/products/search/($query)** Poišči produkte

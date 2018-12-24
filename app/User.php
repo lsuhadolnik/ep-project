@@ -146,4 +146,9 @@ class User extends Authenticatable
         
     }
 
+    public function getRating($product_id)
+    {
+        return Rating::where(["user_id"=>$this->id, "product_id"=>$product_id])->first();
+    }
+
 }
