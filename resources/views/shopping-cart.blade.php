@@ -15,7 +15,12 @@
                 @include('shared.list')
             @endforeach
             <br><br>
-            <button class="btn btn-primary right">Oddaj naročilo</button>
+            @if (!isset($empty))
+                <form action="/order/{{$id}}/active" method="POST">
+                    {{ csrf_field() }}
+                    <button type="submit" class="btn btn-primary right" >Oddaj naročilo</button>
+                </form>
+            @endif
         </div>
     </div>
 </div>

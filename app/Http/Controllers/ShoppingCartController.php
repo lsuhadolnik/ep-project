@@ -35,6 +35,7 @@ class ShoppingCartController extends Controller
             $k = Order::shoppingCart($user);
             return view('shopping-cart', [
                 'products' => $k->products,
+                'id' => $k->id,
                 'price' => $k->totalPrice
             ]);
         }

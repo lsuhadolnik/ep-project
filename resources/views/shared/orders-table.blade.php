@@ -11,23 +11,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td> 1548795 </td>
-            <td> 15.8.2017 </td>
-            <td> </td>
-            <td></td>
-            <td> Oddano v pregled </td>
-            <td> 20.00$</td>
-            <td><a href="/order" class="link">Preglej</a></td>
-        </tr>
-        <tr>
-            <td> 15487956 </td>
-            <td> 15.8.2017 </td>
-            <td> 15.8.2017 </td>
-            <td></td>
-            <td> Potrjeno </td>
-            <td> 20.00$</td>
-            <td><a href="/order" class="link">Preglej</a></td>
-        </tr>
+        @foreach($orders as $order)
+            <tr>
+                <td> {{$order->id}} </td>
+                <td> {{$order->submitted_at}} </td>
+                <td> {{isset($order->fullfilled_at) ? $order->fullfilled_at : "" }}</td>
+                <td> {{isset($order->cancelled_at) ? $order->cancelled_at : "" }}</td>
+                <td> {{$order->status}} </td>
+                <td> {{$order->total_price}} $</td>
+                <td><a href="/order/{{$order->id}}" class="link">Preglej</a></td>
+            </tr>
+        @endforeach
     </tbody>
 </table>

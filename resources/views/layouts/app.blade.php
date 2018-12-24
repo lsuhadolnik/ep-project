@@ -77,6 +77,9 @@
                                     <a class="dropdown-item" href="{{ route('cart') }}">
                                         {{ __('Košarica') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('showorders') }}">
+                                        {{ __('Naročila') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('showprofile') }}">
                                         {{ __('Profil') }}
                                     </a>
@@ -87,6 +90,9 @@
                                         {{ __('Odjava') }}
                                     </a>
                                     <form id="cart-navbar" action="{{ route('cart') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <form id="show-order" action="{{ route('showorders') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                     <form id="profile-navbar" action="{{ route('showprofile') }}" method="POST" style="display: none;">

@@ -19,9 +19,11 @@ Route::get('/order', function() {
 });
 
 /*tukaj mora priti se id od uporabnika / prodajalca?*/
-Route::get('/orders', function() {
-    return view('orders');
-});
+Route::post('/order/{id}/{status}', 'OrderController@setStatus');
+
+Route::get('/orders', 'OrderController@show')->name('showorders');
+Route::get('/orders/{status}', 'OrderController@showByStatus')->name('filterorders');
+
 
 /*tukaj mora priti se id od userja?*/
 Route::get('/cart', 'ShoppingCartController@show')->name('showcart');
