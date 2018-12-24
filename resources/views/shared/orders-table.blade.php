@@ -14,9 +14,9 @@
         @foreach($orders as $order)
             <tr>
                 <td> {{$order->id}} </td>
-                <td> {{$order->submitted_at}} </td>
-                <td> {{isset($order->fullfilled_at) ? $order->fullfilled_at : "" }}</td>
-                <td> {{isset($order->cancelled_at) ? $order->cancelled_at : "" }}</td>
+                <td> {{\Carbon\Carbon::parse($order->submitted_at)->format('d. m. Y')}} </td>
+                <td> {{isset($order->fullfilled_at) ? \Carbon\Carbon::parse($order->fullfilled_at)->format('d. m. Y') : "" }}</td>
+                <td> {{isset($order->cancelled_at) ? \Carbon\Carbon::parse($order->cancelled_at)->format('d. m. Y') : "" }}</td>
                 <td> {{$order->status}} </td>
                 <td> {{$order->total_price}} $</td>
                 <td><a href="/order/{{$order->id}}" class="link">Preglej</a></td>

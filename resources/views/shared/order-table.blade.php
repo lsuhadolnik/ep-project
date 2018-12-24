@@ -7,20 +7,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td> Super izdelek 3.0 </td>
-            <td> 2 </td>
-            <td> 10.00 $<td>
-        </tr>
-        <tr>
-            <td> Super izdelek 2.0 </td>
-            <td> 2 </td>
-            <td> 10.00 $<td>
-        </tr>
-        <tr>
-            <td>  </td>
-            <th> Skupaj: </th>
-            <th>20.00 $<th>
-        </tr>
+        @foreach ($order->products as $product)
+            <tr>
+                <td> {{$product->name}} </td>
+                <td> {{$product->quantity}} </td>
+                <td> {{$product->price}} $</td>
+            </tr>
+        @endforeach
     </tbody>
 </table>

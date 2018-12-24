@@ -129,7 +129,7 @@ a.icon-button {
 .right {
     float:right;
 }
-.link {
+.link, .link:hover {
     color:var(--my-middle-blue);
 }
 .user-profile, .user-password{

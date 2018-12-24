@@ -31,7 +31,7 @@ class OrderController extends Controller
             case('fullfilled'):
                 return "Potrjeno";
             case('cancelled'):
-                return preklicano;
+                return "Preklicano";
 
         }
     }
@@ -51,6 +51,15 @@ class OrderController extends Controller
 
         return view('orders', [
             'orders' => $user->orders($status)->get()
+        ]);
+    }
+
+    public function showOrder($order_id) {
+        $user = Auth::user();
+
+
+        return view('order', [
+            'order' => $user->orders()->get()->find($order_id)
         ]);
     }
 }
