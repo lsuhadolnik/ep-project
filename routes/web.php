@@ -28,10 +28,8 @@ Route::get('/cart', 'ShoppingCartController@show')->name('showcart');
 Route::post('/cart', 'ShoppingCartController@add')->name('cart');
 Route::delete('/cart/{id}', 'ShoppingCartController@delete')->name('delcart');
 
-/*tukaj mora priti se id od userja*/
-Route::get('/profile', function() {
-    return view('profile');
-});
+Route::get('/profile', 'ProfileController@show')->name('showprofile');
+Route::post('/profile', 'ProfileController@update')->name('profile');
 
 Route::get('/users', function() {
     return view('users');

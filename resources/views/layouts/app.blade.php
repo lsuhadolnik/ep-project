@@ -72,6 +72,9 @@
                                     <a class="dropdown-item" href="{{ route('cart') }}">
                                         {{ __('Košarica') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('showprofile') }}">
+                                        {{ __('Profil') }}
+                                    </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -79,6 +82,9 @@
                                         {{ __('Odjava') }}
                                     </a>
                                     <form id="cart-navbar" action="{{ route('cart') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <form id="profile-navbar" action="{{ route('showprofile') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
