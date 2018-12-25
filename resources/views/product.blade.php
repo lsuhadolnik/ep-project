@@ -8,39 +8,47 @@
             <h3>Artikel</h3>
             <br>
             <div>
-                <div class="carousel-stars" >
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            @foreach($product->images as $image)
-                                @if ($loop->first)
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $image->id }}" class="active"></li>
-                                @else
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $image->id }}"></li> 
-                                @endif
-                            @endforeach
-                        </ol>
-                        <div class="carousel-inner">
-                            @foreach($product->images as $image)
-                                @if($loop->first)
-                                    <div class="carousel-item active">
-                                    <img class="d-block w-100" src=" {{ $image->path }}" alt="First slide">
-                                    </div>
-                                @else
-                                    <div class="carousel-item ">
-                                    <img class="d-block w-100" src=" {{ $image->path }}" alt="First slide">
-                                    </div>
-                                @endif
-                            @endforeach
+                <div class="image-stars">
+                @if(count($product->images)>0)
+                    <div  >
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                @foreach($product->images as $image)
+                                    @if ($loop->first)
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $image->id }}" class="active"></li>
+                                    @else
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $image->id }}"></li> 
+                                    @endif
+                                @endforeach
+                            </ol>
+                            <div class="carousel-inner">
+                                @foreach($product->images as $image)
+                                    @if($loop->first)
+                                        <div class="carousel-item active">
+                                        <img class="d-block w-100" src=" {{ $image->path }}" alt="First slide">
+                                        </div>
+                                    @else
+                                        <div class="carousel-item ">
+                                        <img class="d-block w-100" src=" {{ $image->path }}" alt="First slide">
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
+                    @else
+                        <div >
+                        <img src=" {{  asset('svg/no-image.png') }}" alt="slika izdelka" class="rounded w-100 d-block"  />
+                        </div>
+                    @endif
                     <br>
                     <div class="stars" data-toggle="modal" data-target="#exampleModal">
                         @include('shared.stars')
@@ -62,9 +70,10 @@
             {{ csrf_field() }}
             <input type="text" name="product_id" value="{{ $product->id }}" hidden>
             <div class="col-lg-12">
-            <div class="quantity right">
-                <label for="quantity">Količina:</label>
-                <input type="text" name="quantity" class="product-quantity-number" value=" {{ $quantity }} " id="quantity{{$product->id}}">
+                <div class="quantity right">
+                    <label for="quantity">Količina:</label>
+                    <input type="text" name="quantity" class="product-quantity-number" value=" {{ $quantity }} " id="quantity{{$product->id}}">
+                </div>
             </div>
             <br><br>
             <button class="btn btn-primary right quantity-button" id="{{$product->id}}">Dodaj v košarico</button>
@@ -100,7 +109,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
-            <button type="button" class="btn btn-primary" type="submit" onclick="document.getElementById('rate-form').submit();">Shrani oceno</button>
+            <button class="btn btn-primary" type="submit">Shrani oceno</button>
         </div>
       </form>
     </div>

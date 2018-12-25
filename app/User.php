@@ -10,6 +10,7 @@ use App\Notifications\ResetPasswordNotification;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Auth\CanResetPassword;
 
 
 use App\Order;

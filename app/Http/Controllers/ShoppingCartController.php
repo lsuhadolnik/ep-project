@@ -35,12 +35,15 @@ class ShoppingCartController extends Controller
             $k = Order::shoppingCart($user);
             return view('shopping-cart', [
                 'products' => $k->products,
+                'id' => $k->id,
                 'price' => $k->totalPrice
             ]);
         }
         else {
             return view('shopping-cart', [
-                'empty' => "Košarica je prazna"
+                'empty' => "Košarica je prazna",
+                'price' => 0,
+                'products' => []
             ]); 
         }
         

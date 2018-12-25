@@ -6,7 +6,7 @@
 body h3, h4, h5, thead{
     color:var(--my-dark-blue);
 }
-body tbody {
+body tbody, h6 {
     color:var(--my-middle-blue);
 }
 .btn-primary {
@@ -129,7 +129,7 @@ a.icon-button {
 .right {
     float:right;
 }
-.link {
+.link, .link:hover {
     color:var(--my-middle-blue);
 }
 .user-profile, .user-password{
@@ -140,7 +140,7 @@ a.icon-button {
     margin:5px;
 }
 
-.carousel-stars {
+ .image-stars {
     width:30%;
     float:left;
 }
@@ -190,6 +190,7 @@ a.icon-button {
 .rating-modal, .rating-modal option{
     color:var(--my-dark-blue);
 }
+
 
 
 

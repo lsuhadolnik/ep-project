@@ -19,19 +19,20 @@ Route::get('/order', function() {
 });
 
 /*tukaj mora priti se id od uporabnika / prodajalca?*/
-Route::get('/orders', function() {
-    return view('orders');
-});
+Route::get('/order/{id}', 'OrderController@showOrder');
+Route::post('/order/{id}/{status}', 'OrderController@setStatus');
+
+Route::get('/orders', 'OrderController@show')->name('showorders');
+Route::get('/orders/{status}', 'OrderController@showByStatus')->name('filterorders');
+
 
 /*tukaj mora priti se id od userja?*/
 Route::get('/cart', 'ShoppingCartController@show')->name('showcart');
 Route::post('/cart', 'ShoppingCartController@add')->name('cart');
 Route::delete('/cart/{id}', 'ShoppingCartController@delete')->name('delcart');
 
-/*tukaj mora priti se id od userja*/
-Route::get('/profile', function() {
-    return view('profile');
-});
+Route::get('/profile', 'ProfileController@show')->name('showprofile');
+Route::post('/profile', 'ProfileController@update')->name('profile');
 
 Route::get('/users', function() {
     return view('users');
@@ -45,6 +46,7 @@ Route::get('/addProduct', function() {
 });
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::post('/resetPassword', '\App\Http\Controllers\ProfileController@resetPassword')->name('reset');
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 

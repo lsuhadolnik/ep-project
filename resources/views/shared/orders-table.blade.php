@@ -11,23 +11,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td> 1548795 </td>
-            <td> 15.8.2017 </td>
-            <td> </td>
-            <td></td>
-            <td> Oddano v pregled </td>
-            <td> 20.00$</td>
-            <td><a href="/order" class="link">Preglej</a></td>
-        </tr>
-        <tr>
-            <td> 15487956 </td>
-            <td> 15.8.2017 </td>
-            <td> 15.8.2017 </td>
-            <td></td>
-            <td> Potrjeno </td>
-            <td> 20.00$</td>
-            <td><a href="/order" class="link">Preglej</a></td>
-        </tr>
+        @foreach($orders as $order)
+            <tr>
+                <td> {{$order->id}} </td>
+                <td> {{\Carbon\Carbon::parse($order->submitted_at)->format('d. m. Y')}} </td>
+                <td> {{isset($order->fullfilled_at) ? \Carbon\Carbon::parse($order->fullfilled_at)->format('d. m. Y') : "" }}</td>
+                <td> {{isset($order->cancelled_at) ? \Carbon\Carbon::parse($order->cancelled_at)->format('d. m. Y') : "" }}</td>
+                <td> {{$order->status}} </td>
+                <td> {{$order->total_price}} $</td>
+                <td><a href="/order/{{$order->id}}" class="link">Preglej</a></td>
+            </tr>
+        @endforeach
     </tbody>
 </table>

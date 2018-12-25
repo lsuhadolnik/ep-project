@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link href="{{ asset('css/style.css?v=12') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css?v=15') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -77,6 +77,12 @@
                                     <a class="dropdown-item" href="{{ route('cart') }}">
                                         {{ __('Košarica') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('showorders') }}">
+                                        {{ __('Naročila') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('showprofile') }}">
+                                        {{ __('Profil') }}
+                                    </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -84,6 +90,12 @@
                                         {{ __('Odjava') }}
                                     </a>
                                     <form id="cart-navbar" action="{{ route('cart') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <form id="show-order" action="{{ route('showorders') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <form id="profile-navbar" action="{{ route('showprofile') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
