@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producer extends Model
 {
- 
+
 	protected $fillable = [
 		'name', 'description'
 	];
@@ -14,4 +14,5 @@ class Producer extends Model
 	protected $hidden = [
 		'created_at', 'updated_at'
 	];
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Support\Facades\Auth;
+use App\Login;
 
 class AuthenticateOnceWithBasicAuth
 {
@@ -21,6 +22,9 @@ class AuthenticateOnceWithBasicAuth
                 Auth::logout();
                 abort(401, "Uporabnik je blokiran");
             }
+
+            Login::note(["type" => "api_request", "api_location" => $request->path()]);
+
         }
         return $r;
     }

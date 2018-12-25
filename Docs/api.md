@@ -12,6 +12,8 @@ Authorization: Basic cHJvZEBlcC5zaTpoZWxsbyE=
 ```
 Če odkodiraš cHJvZEBlcC5zaTpoZWxsbyE= z BASE64 decoderjem dobiš string `prod@ep.si:hello!`
 
+# ZA TESTIRANJE API-ja PRIPOROČAM Postman: https://www.getpostman.com/
+
 ## Implementirane lokacije
 
 - **GET /api/user** (HTTPS, AUTH) Vrne informacije o trenutnem prijavljenem uporabniku
@@ -260,10 +262,26 @@ Response:
 {}
 ```
 
-# Lokacije, ki še bodo implementirane
-
-- **GET /api/products/search/($query)** Poišči produkte
-
+- **GET /api/products/search/{$query}** Poišči produkte
+Response:
+```json
+[
+    {
+        "id": 3,
+        "name": "Pečica",
+        "description": "To je super pečica",
+        "price": 112.02,
+        "images": [],
+        "producerName": "Gorenje",
+        "rating": {
+            "num_ratings": 0,
+            "rating": 0
+        },
+        "quantity": 0,
+        "times_bought": 0
+    },
+]
+```
 
 
 ### Vse informacije artikla

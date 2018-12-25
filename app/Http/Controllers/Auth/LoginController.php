@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Login;
 
 use Illuminate\Validation\ValidationException;
 
@@ -42,14 +43,23 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request) {
+
+        Login::note(['type'=>'logout']);
+
         Auth::logout();
         return redirect('/');
     }
     protected function attemptLogin(Request $request)
     {
-        return Auth::attempt(
+        $attempt = Auth::attempt(
             $this->credentials($request) + ["status" => 'active']
         );
+
+        if($attempt){ 
+            Login::note(['type'=>'login']);
+        }
+
+        return $attempt;
     }
 
     protected function sendFailedLoginResponse(Request $request)

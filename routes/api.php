@@ -38,6 +38,7 @@ Route::group(['middleware' => ['https', 'auth.basic.once']], function() {
 
 /* Product routes */
 Route::get('products', 'API\ProductsController@index');// Seznam vseh AKTIVNIH produktov.')
+Route::get('products/search/{query}', 'API\ProductsController@search');// Iskanje po produktih in proizvajalcih
 Route::get('product/{id}', 'API\ProductsController@show'); // Informacije o produktu.
 Route::get('products/mostWanted/{n?}', 'API\ProductsController@mostWanted'); // Pridobi n najbolje prodajanih produktov. Upošteva tudi košarice.
 Route::get('products/topRated/{n?}', 'API\ProductsController@topRated'); // Pridobi n najbolje ocenjenih produktov.
