@@ -53,4 +53,19 @@ class ProfileController extends Controller
         return redirect('/profile');
 
     }
+
+    public function resetPassword(Request $request) {
+        $data = $request->validate([
+            'password1' => 'required|min:6|max:255',
+            'password2' => 'required|same:password1'
+        ]);
+
+        $user = Auth::user();
+        $user->password = $request->input('password1');
+        $user->save();
+
+        return redirect('/profile')->with([
+            'message' => "Geslo je bilo uspešno spremenjeno"
+        ]);
+    }
 }

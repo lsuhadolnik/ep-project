@@ -6,12 +6,13 @@
         <div class="col-lg-12">
 
             <h3>Profil</h3>
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    {{ $errors->first()}}
+                </div>
+            @endif
             <form class="user-profile" method="post" action="{{ route('profile') }}">
-                @if ($errors->any())
-                    <div class="alert alert-danger" role="alert" style="margin-right:50px">
-                        {{ $errors->first()}}
-                    </div>
-                @endif
+                
                 {{ csrf_field() }}
                 <table>
                     <tr class="{{ $errors->has('name') ? ' has-error' : '' }}" > 
@@ -46,21 +47,27 @@
                 <br>
                 <button type="submit" class="btn btn-primary">Shrani</button>
             </form>
-            <form class="user-password" method="post" action="">
+            <form class="user-password" method="POST" action="/resetPassword">
+                @if( (session()->get( 'message' )) !== null )
+                    <div class="alert alert-success" role="alert" style="margin-right:50px">
+                        {{ session()->get( 'message' )}}
+                    </div>
+                @endif
+                {{ csrf_field() }}
                 <table>
-                    <tr>
+                    <!-- <tr>
                         <th><label for="oldpassword">Staro geslo</label><th>
                         <td><input type="text" name="oldpassword"><td>
-                    </tr>
+                    </tr> -->
                     
                     <tr>
                         <th><label for="password1">Novo geslo</label><th>
-                        <td><input type="text" name="password1"><td>
+                        <td><input type="password" name="password1"><td>
                     </tr>
                     
                     <tr>
                         <th><label for="password2">Ponovi novo geslo</label><th>
-                        <td><input type="text" name="password2" ><td>
+                        <td><input type="password" name="password2" ><td>
                     </tr>
 
                     

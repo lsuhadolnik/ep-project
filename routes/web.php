@@ -46,6 +46,7 @@ Route::get('/addProduct', function() {
 });
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::post('/resetPassword', '\App\Http\Controllers\ProfileController@resetPassword')->name('reset');
 
 Auth::routes(['verify' => true]);
 
