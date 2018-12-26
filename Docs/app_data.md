@@ -73,3 +73,5 @@ PostalCode::find(1352);
 PostalCode::create(["id"=>1352, "name"=>"Preserje"]);
 
 ```
+
+- Iskanje po artiklih (upošteva tudi imena proizvajalcev): `Product::search($query)`

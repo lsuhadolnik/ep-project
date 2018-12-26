@@ -3,15 +3,20 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\VerifyEmail;
+use App\Notifications\ResetPasswordNotification;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Auth\CanResetPassword;
 
+
 use App\Order;
 use App\Rating;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -150,6 +155,22 @@ class User extends Authenticatable
     public function getRating($product_id)
     {
         return Rating::where(["user_id"=>$this->id, "product_id"=>$product_id])->first();
+    }
+
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 
 }

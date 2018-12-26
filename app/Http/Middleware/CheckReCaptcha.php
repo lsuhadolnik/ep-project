@@ -22,6 +22,8 @@ class CheckReCaptcha
 
             $secret_key = "6LdffoQUAAAAAHKcPTq3RXkRNOLBgJrqpMZ6frhU";
 
+            $value = $data["g-recaptcha-response"];
+            
             //abort(400, "Sec: $secret_key, Val: $value");
 
             $client = new \GuzzleHttp\Client();

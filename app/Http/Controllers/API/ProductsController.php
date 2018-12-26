@@ -41,14 +41,20 @@ class ProductsController extends Controller
         return $p;
     }
 
-    public function mostWanted(Request $req, $n = 5){
+    public function mostWanted(Request $req, $n = 5)
+    {
         return Product::mostWanted($n);
     }
 
-    public function topRated(Request $req, $n = 5) {
+    public function topRated(Request $req, $n = 5) 
+    {
         return Product::topRated($n);
     }
 
+    public function search($query) 
+    {
+        return Product::search($query);
+    }
 
 
 

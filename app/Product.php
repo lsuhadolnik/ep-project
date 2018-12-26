@@ -151,4 +151,29 @@ class Product extends Model
 
 	}
 
+	public static function search($q)
+	{
+		$ids = DB::select("SELECT id, ? FROM products WHERE MATCH(name, description) AGAINST(? IN BOOLEAN MODE)
+			UNION 
+			SELECT id, ? FROM products WHERE producer_id IN (SELECT id FROM producers WHERE MATCH(name) AGAINST(? IN BOOLEAN MODE))
+		", [$q, $q, $q, $q]);
+
+		/*$ids = DB::select("SELECT 
+			p.id, p.name, p.description, p.price 
+		from products p 
+		
+		WHERE MATCH(name,description) AGAINST(:query IN BOOLEAN MODE)", ["query"=>$q]);*/
+
+		if($ids == null){
+			return ["status" => "Ni artiklov."];
+		}
+
+		$product_ids = [];
+		foreach($ids as $product_stat){
+			$product_ids[] = $product_stat->id;
+		}
+
+		return Product::whereIn('id', $product_ids)->get();
+	}
+
 }

@@ -54,6 +54,13 @@ Route::post('/management/order/{id}/{status}', 'ManagementController@setStatus')
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 
-Auth::routes(['verify' => true]);
-
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
+
+/**---------------- FUUUJ! --------------------*/
+Auth::routes(['verify' => true, 'reset'=>false]);
+/* Vse to samo zato, da lahko dodam ReCaptcha pregledovanje **/
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email')->middleware('check-recaptcha');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');

@@ -32,8 +32,9 @@ sudo vim /etc/apache2/sites-available/default-ssl.conf
 
 		<LocationMatch "^(/api)?/secure(/(.*))?">
 			
+			SSLVerifyClient require
+			SSLVerifyDepth 1
 			SSLOptions +StdEnvVars
-		    SSLVerifyClient require
 
 		</LocationMatch>
 

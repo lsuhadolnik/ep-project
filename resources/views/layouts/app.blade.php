@@ -19,7 +19,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/scripts.js?v=4') }}" defer></script>
 
-    @if(Request::is('register'))
+    @if(Request::is('register') || Request::is('password/reset'))
         <script src='https://www.google.com/recaptcha/api.js'></script>
     @endif
 
