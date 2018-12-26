@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use \App\Order;
+use \App\Product;
 
 use Illuminate\Http\Request;
 
@@ -28,5 +29,30 @@ class ManagementController extends Controller
     public function setStatus($order_id, $status) {
         Order::find($order_id)->changeStatus($status);
         return redirect('/management/orders/active');
+    }
+
+    public function showProducts() {
+        return view('products', [
+            'products' => Product::all()
+        ]);
+    }
+    public function showAddProduct() {
+        return view('add-product');
+    }
+    public function addProduct(Request $request) {
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required|max:1023',
+            'producer' => 'required|max:255',
+            'price' => 'required|numeric'
+        ]);
+        $product = new Product();
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        /*$product->producer = $request->input('producer');*/
+        $product->save();
+
+        return redirect('/management/products');
     }
 }

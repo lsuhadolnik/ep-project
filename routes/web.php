@@ -43,9 +43,11 @@ Route::get('/users', function() {
 Route::get('/product/{id}', 'ProductController@show')->name('showproduct');
 Route::post('/product/{id}/rating', 'ProductController@rate')->name('rate');
 
-Route::get('/addProduct', function() {
-    return view('add-product');
-});
+Route::get('/management/products', 'ManagementController@showProducts');
+Route::get('/management/addProduct', 'ManagementController@showAddProduct');
+Route::post('/management/addProduct', 'ManagementController@addProduct');
+Route::get('/management/updateProduct', 'ManagementController@showUpdateProduct');
+Route::post('/management/updateProduct', 'ManagementController@updateProduct');
 
 Route::get('/management', 'ManagementController@show')->name('management');
 Route::get('/management/order/{id}', 'ManagementController@showOrder');

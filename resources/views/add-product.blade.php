@@ -7,7 +7,13 @@
 
             <h3>Dodajanje artikla</h3>
             <br>
-            <form class="add-product" method="post" action="">
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    {{ $errors->first()}}
+                </div>
+            @endif
+            <form class="add-product" method="POST" action="/management/addProduct">
+                @csrf
                 <table class="add-product-table">
                     <tr>
                         <th><label for="name">Ime</label><th>
@@ -17,6 +23,11 @@
                     <tr>
                         <th><label for="producer">Proizvajalec</label><th>
                         <td><input type="text" name="producer"><td>
+                    </tr>
+
+                    <tr>
+                        <th><label for="price">Cena</label><th>
+                        <td><input type="text" name="price"><td>
                     </tr>
                     
                     <tr>

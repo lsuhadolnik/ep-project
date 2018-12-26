@@ -13,6 +13,10 @@
             <a href="/management/products" class="management">
                 <div class="alert alert-primary">Upravljanje z izdelki</div>
             </a>
+
+            <a href="/management/addProduct" class="management">
+                <div class="alert alert-primary">Dodajanje novega izdelka</div>
+            </a>
         </div>
     </div>
 </div>
