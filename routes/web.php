@@ -36,9 +36,7 @@ Route::get('/profile', 'ProfileController@show')->name('showprofile');
 Route::post('/profile', 'ProfileController@update')->name('profile');
 Route::post('/resetPassword', 'ProfileController@resetPassword')->name('reset');
 
-Route::get('/users', function() {
-    return view('users');
-});
+
 
 Route::get('/product/{id}', 'ProductController@show')->name('showproduct');
 Route::post('/product/{id}/rating', 'ProductController@rate')->name('rate');
@@ -53,6 +51,10 @@ Route::get('/management', 'ManagementController@show')->name('management');
 Route::get('/management/order/{id}', 'ManagementController@showOrder');
 Route::get('/management/orders/{status}', 'ManagementController@showByStatus')->name('ordersmanagement');
 Route::post('/management/order/{id}/{status}', 'ManagementController@setStatus');
+
+Route::get('/management/users', 'ManagementController@showUsers');
+Route::post('/management/user/{id}/changeStatus', 'ManagementController@userChangeStatus');
+
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 

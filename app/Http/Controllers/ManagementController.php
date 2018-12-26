@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use \App\Order;
 use \App\Product;
+use \App\User;
 
 use Illuminate\Http\Request;
 
@@ -54,5 +55,27 @@ class ManagementController extends Controller
         $product->save();
 
         return redirect('/management/products');
+    }
+
+    public function showUsers() {
+        $user = Auth::user();
+
+        return view('users', [
+            "users" => User::all()
+        ]);
+        
+    }
+
+    public function userChangeStatus($id) {
+        $user = User::find($id);
+        if($user->status == "active") {
+            $user->status = "disabled";
+        } else {
+            $user->status="active";
+        }
+        
+        $user->save();
+        
+        return redirect('/management/users');
     }
 }
