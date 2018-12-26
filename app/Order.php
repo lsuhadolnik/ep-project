@@ -99,8 +99,8 @@ class Order extends Model
 			case 'cancelled':
 
 				if($this->status == 'fulfilled' || $this->status == 'active'){
-					$this->status = 'active';
-					$this->submitted_at = date("Y-m-d H:i:s");
+					$this->status = 'cancelled';
+					$this->cancelled_at = date("Y-m-d H:i:s");
 					$this->save();
 				}
 				else return ["status"=>"Nisem preklical naročila, ker ni v pravem stanju (".$this->status.")"];

@@ -21,14 +21,14 @@ class OrderController extends Controller
 
     public function setStatus($order_id, $status) {
         Order::find($order_id)->changeStatus($status);
-        return redirect('/order');
+        return redirect('/orders');
     }
 
     public function getDescriptionStatus($status) {
         switch($status) {
             case('active'):
                 return "Oddano, čaka na pregled";
-            case('fullfilled'):
+            case('fulfilled'):
                 return "Potrjeno";
             case('cancelled'):
                 return "Preklicano";
@@ -37,20 +37,21 @@ class OrderController extends Controller
     }
 
     public function show() {
-        $user = Auth::user();
+        /*$user = Auth::user();
 
 
         return view('orders', [
             'orders' => $user->orders()->get()
-        ]);
+        ]); */
+        return redirect('/orders/active');
     }
 
     public function showByStatus($status) {
         $user = Auth::user();
-
+        $orders = $user->orders($status)->get();
 
         return view('orders', [
-            'orders' => $user->orders($status)->get()
+            'orders' => $orders
         ]);
     }
 

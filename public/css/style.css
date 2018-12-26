@@ -190,6 +190,14 @@ a.icon-button {
 .rating-modal, .rating-modal option{
     color:var(--my-dark-blue);
 }
+.alert-primary {
+    background-color:var(--my-light-blue) !important;
+    color:var(--my-dark-blue);
+    font-size:18px;
+}
+.management:hover {
+    text-decoration:none;
+}
 
 
 

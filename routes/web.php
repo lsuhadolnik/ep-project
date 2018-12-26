@@ -33,6 +33,7 @@ Route::delete('/cart/{id}', 'ShoppingCartController@delete')->name('delcart');
 
 Route::get('/profile', 'ProfileController@show')->name('showprofile');
 Route::post('/profile', 'ProfileController@update')->name('profile');
+Route::post('/resetPassword', 'ProfileController@resetPassword')->name('reset');
 
 Route::get('/users', function() {
     return view('users');
@@ -45,8 +46,13 @@ Route::get('/addProduct', function() {
     return view('add-product');
 });
 
+Route::get('/management', 'ManagementController@show')->name('management');
+Route::get('/management/order/{id}', 'ManagementController@showOrder');
+Route::get('/management/orders/{status}', 'ManagementController@showByStatus')->name('ordersmanagement');
+Route::post('/management/order/{id}/{status}', 'ManagementController@setStatus');
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-Route::post('/resetPassword', '\App\Http\Controllers\ProfileController@resetPassword')->name('reset');
+
 
 Auth::routes(['verify' => true]);
 

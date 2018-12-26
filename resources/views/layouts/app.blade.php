@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link href="{{ asset('css/style.css?v=15') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css?v=16') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -80,6 +80,11 @@
                                     <a class="dropdown-item" href="{{ route('showorders') }}">
                                         {{ __('Naročila') }}
                                     </a>
+                                    @if(Auth::user()->role->id < 3)
+                                        <a class="dropdown-item" href="{{ route('management') }}">
+                                            {{ __('Upravljanje') }}
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('showprofile') }}">
                                         {{ __('Profil') }}
                                     </a>
@@ -95,6 +100,11 @@
                                     <form id="show-order" action="{{ route('showorders') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    @if(Auth::user()->role->id < 3)
+                                        <form id="management" action="{{ route('management') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
                                     <form id="profile-navbar" action="{{ route('showprofile') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
