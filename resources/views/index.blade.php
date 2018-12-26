@@ -24,6 +24,9 @@
                     @endforeach
                 </div>
             </div>
+            @if(isset($message))
+                <h5>{{ $message }} </h3>
+            @endif
             @foreach ($products as $product)
                 <div class="">
                     @include('shared.list')

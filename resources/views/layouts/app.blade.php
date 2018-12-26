@@ -54,8 +54,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Search -->
-                        <form class="form-inline my-2 my-lg-0 searchbar">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <form class="form-inline my-2 my-lg-0 searchbar" method="POST" action="/search">
+                            @csrf
+                            <input class="form-control mr-sm-2" type="search" placeholder="Iskanje" aria-label="Search" name="search">
                         </form>
                         <!-- Authentication Links -->
                         @guest

@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'MainController@show');
+Route::post('/search', 'MainController@search');
 
 /*tukaj mora priti se id od orderja*/
 Route::get('/order', function() {
