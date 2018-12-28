@@ -18,10 +18,15 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/scripts.js?v=4') }}" defer></script>
+    <script src="{{ asset('js/jquery.js') }}" defer></script>
 
     @if(Request::is('register') || Request::is('password/reset'))
         <script src='https://www.google.com/recaptcha/api.js'></script>
     @endif
+
+    <!-- Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
     
     <!-- Fonts -->
@@ -35,7 +40,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link href="{{ asset('css/style.css?v=16') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css?v=17') }}" rel="stylesheet">
 
 </head>
 <body>

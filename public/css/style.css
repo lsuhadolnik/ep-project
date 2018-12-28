@@ -136,8 +136,10 @@ a.icon-button {
     width:50%;
     float:left;
 }
-.user-profile input, .user-password input, .add-product input, textarea{
-    margin:5px;
+.user-profile input, .user-password input, .add-product input, textarea, select{
+    margin: 5px 0px;
+    border: 1px solid 	#BEBEBE;
+    border-radius: 0.25em;
 }
 
  .image-stars {
@@ -180,6 +182,9 @@ a.icon-button {
     width:50%;
 }
 .add-product-table textarea{
+    width:100%;
+}
+.add-product select {
     width:100%;
 }
 .rating-input{

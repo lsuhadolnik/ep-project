@@ -6,6 +6,7 @@ use Auth;
 use \App\Order;
 use \App\Product;
 use \App\User;
+use \App\Producer;
 
 use Illuminate\Http\Request;
 
@@ -38,7 +39,9 @@ class ManagementController extends Controller
         ]);
     }
     public function showAddProduct() {
-        return view('add-product');
+        return view('add-product', [
+            'producers' => Producer::all()
+        ]);
     }
     public function addProduct(Request $request) {
         $data = $request->validate([
@@ -51,7 +54,15 @@ class ManagementController extends Controller
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
-        /*$product->producer = $request->input('producer');*/
+
+        $producer_name = $request->input('producer');
+        $producer = Producer::where('name', $producer_name)->get()->first();
+        if( $producer == null) {
+            $producer = new Producer();
+            $producer->name = $producer_name;
+            $producer->save();
+        }
+        $product->producer_id = $producer->id;
         $product->save();
 
         return redirect('/management/products');
@@ -60,8 +71,13 @@ class ManagementController extends Controller
     public function showUsers() {
         $user = Auth::user();
 
+        $users = User::where('role_id', 3)->get();
+        
+        if($user->role_id == 1) {
+            $users = User::where('role_id', [2,3])->get(); 
+        }
         return view('users', [
-            "users" => User::all()
+            "users" => $users
         ]);
         
     }

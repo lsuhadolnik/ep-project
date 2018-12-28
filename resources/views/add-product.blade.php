@@ -16,23 +16,30 @@
                 @csrf
                 <table class="add-product-table">
                     <tr>
-                        <th><label for="name">Ime</label><th>
-                        <td><input type="text" name="name"><td>
+                        <th><label for="name">Ime</label></th>
+                        <td><input type="text" name="name"></td>
                     </tr>
                     
                     <tr>
-                        <th><label for="producer">Proizvajalec</label><th>
-                        <td><input type="text" name="producer"><td>
+                        <th><label for="price">Cena</label></th>
+                        <td><input type="text" name="price"></td>
                     </tr>
 
                     <tr>
-                        <th><label for="price">Cena</label><th>
-                        <td><input type="text" name="price"><td>
+                        <th><label for="producer">Proizvajalec</label></th>
+                        <td>
+                            <select class="js-example-basic-single" name="producer">
+                                @foreach($producers as $producer)
+                                    <option value="{{$producer->name}}">{{$producer->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
                     </tr>
+
                     
                     <tr>
-                        <th><label for="description">Opis</label><th>
-                        <td><textarea type="text" rows="7" name="description"></textarea><td>
+                        <th><label for="description">Opis</label></th>
+                        <td><textarea type="text" rows="7" name="description"></textarea></td>
                     </tr>
                     
                 </table>
