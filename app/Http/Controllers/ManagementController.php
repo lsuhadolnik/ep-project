@@ -7,11 +7,21 @@ use \App\Order;
 use \App\Product;
 use \App\User;
 use \App\Producer;
+use App\Image as Image2;
 
+use App\Upload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Intervention\Image\Facades\Image;
 
 class ManagementController extends Controller
 {
+    private $photos_path;
+ 
+    public function __construct() {
+        $this->photos_path = public_path('/images');
+    }
+
     public function show() {
         return view('management-dir');
     }
@@ -63,7 +73,44 @@ class ManagementController extends Controller
             $producer->save();
         }
         $product->producer_id = $producer->id;
+        
         $product->save();
+
+        /* photos */
+
+        $photos = $request->file('file');
+ 
+        if (!is_array($photos)) {
+            $photos = [$photos];
+        }
+ 
+        if (!is_dir($this->photos_path)) {
+            mkdir($this->photos_path, 0777);
+        }
+ 
+        for ($i = 0; $i < count($photos); $i++) {
+            $photo = $photos[$i];
+            $name = sha1(date('YmdHis') . str_random(30));
+            $save_name = $name . '.' . $photo->getClientOriginalExtension();
+            $resize_name = $name . str_random(2) . '.' . $photo->getClientOriginalExtension();
+ 
+            Image::make($photo)
+                ->resize(250, null, function ($constraints) {
+                    $constraints->aspectRatio();
+                })
+                ->save($this->photos_path . '/' . $resize_name);
+ 
+            $photo->move($this->photos_path, $save_name);
+
+            $image = new Image2();
+            $image->name = $save_name;
+            $image->path = '/images/'.$save_name;
+            $image->save();
+
+            $product->images()->attach($image->id); 
+        }
+
+        
 
         return redirect('/management/products');
     }
