@@ -78,4 +78,17 @@ class ManagementController extends Controller
         
         return redirect('/management/users');
     }
+
+    public function productChangeStatus($id) {
+        $product = Product::find($id);
+        if($product->status == "active") {
+            $product->status = "disabled";
+        } else {
+            $product->status="active";
+        }
+        
+        $product->save();
+        
+        return redirect('/management/products');
+    }
 }

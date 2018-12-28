@@ -29,7 +29,7 @@ class MainController extends Controller
     public function show()
     {
         return view('index', [
-            'products' => Product::all(),
+            'products' => Product::where('status', 'active')->get(),
             'topProducts' => Product::topRated(5)
 
         ]);

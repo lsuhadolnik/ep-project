@@ -46,6 +46,7 @@ Route::get('/management/addProduct', 'ManagementController@showAddProduct');
 Route::post('/management/addProduct', 'ManagementController@addProduct');
 Route::get('/management/updateProduct', 'ManagementController@showUpdateProduct');
 Route::post('/management/updateProduct', 'ManagementController@updateProduct');
+Route::post('/management/product/{id}/changeStatus', 'ManagementController@productChangeStatus');
 
 Route::get('/management', 'ManagementController@show')->name('management');
 Route::get('/management/order/{id}', 'ManagementController@showOrder');
