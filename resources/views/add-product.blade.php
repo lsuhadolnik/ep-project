@@ -44,6 +44,7 @@
                     
                 </table>
                 
+                <label><strong>Izberite slike: </strong></label>
                 <div class="dropzone" id="addDropzone"></div>
                 <br>
                 <button type="submit" class="btn btn-primary" id="submit-form">Dodaj</button>

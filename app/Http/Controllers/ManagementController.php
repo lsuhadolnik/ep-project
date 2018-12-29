@@ -205,7 +205,7 @@ class ManagementController extends Controller
         $users = User::where('role_id', 3)->get();
         
         if($user->role_id == 1) {
-            $users = User::where('role_id', [2,3])->get(); 
+            $users = User::whereIn('role_id', [2,3])->get(); 
         }
         return view('users', [
             "users" => $users
