@@ -4,7 +4,7 @@
 
 sudo apt update
 # install composer
-sudo apt install curl php-cli php-mbstring git unzip php-curl
+sudo apt -y install curl php-cli php-mbstring git unzip php-curl
 curl -sS https://getcomposer.org/installer -o composer-setup.php
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
@@ -31,21 +31,24 @@ sudo ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enab
 chmod +x /var/www/ep-project/Docs/gencerts.sh
 mkdir /var/www/ep-project/certs
 cp /var/www/ep-project/Docs/gencerts.sh /var/www/ep-project/certs
-cd /var/www/ep-project/
-/var/www/ep-project/certs/gencerts.sh
+cd /var/www/ep-project/certs
+./gencerts.sh localhost
 
 # Configure apache
 sudo a2enmod rewrite
 sudo a2enmod ssl
 sudo service apache2 restart
 
+chmod -R 777 /var/www/storage/*
+chmod -R 777 /var/www/app/storage/*
+
 # Add mysql user
 mysql -u root -pep < /var/www/ep-project/Docs/createMySQLUser.sql
 
 cd /var/www/ep-project
 cp .env.example .env
-artisan migrate
-artisan db:seed
+php artisan migrate
+php artisan db:seed
 
 
 

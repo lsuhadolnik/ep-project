@@ -5,7 +5,7 @@ state="Ljubljana"
 loc="Ljubljana"
 org="EP"
 ou="IT"
-cn="ep-project.test"
+cn=${1:-"ep-project.test"}
 
 str="/C=$country/ST=$state/L=$loc/O=$org/OU=$ou"
 
