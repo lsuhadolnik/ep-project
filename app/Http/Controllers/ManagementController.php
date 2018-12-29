@@ -20,6 +20,7 @@ class ManagementController extends Controller
  
     public function __construct() {
         $this->photos_path = public_path('/images');
+        $this->middleware('auth');
     }
 
     public function show() {
@@ -60,6 +61,7 @@ class ManagementController extends Controller
             'producer' => 'required|max:255',
             'price' => 'required|numeric'
         ]);
+
         $product = new Product();
         $product->name = $request->input('name');
         $product->description = $request->input('description');
@@ -80,39 +82,42 @@ class ManagementController extends Controller
 
         $photos = $request->file('file');
  
-        if (!is_array($photos)) {
-            $photos = [$photos];
-        }
- 
-        if (!is_dir($this->photos_path)) {
-            mkdir($this->photos_path, 0777);
-        }
- 
-        for ($i = 0; $i < count($photos); $i++) {
-            $photo = $photos[$i];
-            $name = sha1(date('YmdHis') . str_random(30));
-            $save_name = $name . '.' . $photo->getClientOriginalExtension();
-            $resize_name = $name . str_random(2) . '.' . $photo->getClientOriginalExtension();
- 
-            Image::make($photo)
-                ->resize(250, null, function ($constraints) {
-                    $constraints->aspectRatio();
-                })
-                ->save($this->photos_path . '/' . $resize_name);
- 
-            $photo->move($this->photos_path, $save_name);
+        if ($photos) {
+           if (!is_array($photos)) {
+                $photos = [$photos];
+            }
+    
+            if (!is_dir($this->photos_path)) {
+                mkdir($this->photos_path, 0777);
+            }
+    
+            for ($i = 0; $i < count($photos); $i++) {
+                $photo = $photos[$i];
+                $name = sha1(date('YmdHis') . str_random(30));
+                $save_name = $name . '.' . $photo->getClientOriginalExtension();
+                $resize_name = $name . str_random(2) . '.' . $photo->getClientOriginalExtension();
+    
+                Image::make($photo)
+                    ->resize(250, null, function ($constraints) {
+                        $constraints->aspectRatio();
+                    })
+                    ->save($this->photos_path . '/' . $resize_name);
+    
+                $photo->move($this->photos_path, $save_name);
 
-            $image = new Image2();
-            $image->name = $save_name;
-            $image->path = '/images/'.$save_name;
-            $image->save();
+                $image = new Image2();
+                $image->name = $save_name;
+                $image->path = '/images/'.$save_name;
+                $image->save();
 
-            $product->images()->attach($image->id); 
+                $product->images()->attach($image->id); 
+            } 
         }
+        
 
         
 
-        return redirect('/management/products');
+        //return redirect('/management/products');
     }
 
     public function showUsers() {

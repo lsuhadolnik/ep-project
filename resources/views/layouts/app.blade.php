@@ -18,7 +18,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/scripts.js?v=4') }}" defer></script>
-    <script src="{{ asset('js/jquery.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.js?v=2') }}" defer></script>
 
     @if(Request::is('register') || Request::is('password/reset'))
         <script src='https://www.google.com/recaptcha/api.js'></script>
