@@ -5,7 +5,7 @@ state="Ljubljana"
 loc="Ljubljana"
 org="EP"
 ou="IT"
-cn="hello.local"
+cn="localhost"
 
 str="/C=$country/ST=$state/L=$loc/O=$org/OU=$ou"
 
