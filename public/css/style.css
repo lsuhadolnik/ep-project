@@ -178,14 +178,32 @@ a.icon-button {
     margin-left:60px;
     cursor:pointer;
 }
+.add-product {
+    width:70%;
+    float:left;
+}
 .add-product-table{
-    width:50%;
+    width:100%;
 }
 .add-product-table textarea{
     width:100%;
 }
 .add-product select {
     width:100%;
+}
+.update-product-images {
+    width:20%;
+    float:right;
+    margin:10px;
+}
+.delete-image-icon {
+    position: absolute;
+    margin-bottom:20px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.update-image{
+    width:100px;
 }
 .rating-input{
     width:100px;

@@ -12,7 +12,7 @@
                     {{ $errors->first()}}
                 </div>
             @endif
-            <form class="add-product" method="POST" action="/management/addProduct">
+            <form class="add-product" method="POST" action="/management/addProduct" id="add-form">
                 <input name="_token" value="{{ csrf_token() }}" type="hidden" id="token">
                 <table class="add-product-table">
                     <tr>
@@ -44,9 +44,9 @@
                     
                 </table>
                 
-                <div class="dropzone" id="myDropzone"></div>
+                <div class="dropzone" id="addDropzone"></div>
                 <br>
-                <button type="submit" class="btn btn-primary" id="submit">Dodaj</button>
+                <button type="submit" class="btn btn-primary" id="submit-form">Dodaj</button>
             </form>
             <!-- <form action="/file-upload"
                 class="dropzone"

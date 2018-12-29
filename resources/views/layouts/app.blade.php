@@ -18,7 +18,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/scripts.js?v=4') }}" defer></script>
-    <script src="{{ asset('js/jquery.js?v=2') }}" defer></script>
+    <script src="{{ asset('js/jquery.js?v=4') }}" defer></script>
 
     @if(Request::is('register') || Request::is('password/reset'))
         <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link href="{{ asset('css/style.css?v=17') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css?v=19') }}" rel="stylesheet">
 
 </head>
 <body>

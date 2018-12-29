@@ -44,8 +44,9 @@ Route::post('/product/{id}/rating', 'ProductController@rate')->name('rate');
 Route::get('/management/products', 'ManagementController@showProducts');
 Route::get('/management/addProduct', 'ManagementController@showAddProduct');
 Route::post('/management/addProduct', 'ManagementController@addProduct');
-Route::get('/management/updateProduct', 'ManagementController@showUpdateProduct');
-Route::post('/management/updateProduct', 'ManagementController@updateProduct');
+Route::get('/management/updateProduct/{id}', 'ManagementController@showUpdateProduct');
+Route::post('/management/updateProduct/{id}', 'ManagementController@updateProduct');
+Route::delete('management/deleteProductImage/{product_id}/{image_id}', 'ManagementController@deleteImage');
 Route::post('/management/product/{id}/changeStatus', 'ManagementController@productChangeStatus');
 
 Route::get('/management', 'ManagementController@show')->name('management');

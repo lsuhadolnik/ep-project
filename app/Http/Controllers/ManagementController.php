@@ -12,6 +12,7 @@ use App\Image as Image2;
 use App\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 
 class ManagementController extends Controller
@@ -117,7 +118,85 @@ class ManagementController extends Controller
 
         
 
-        //return redirect('/management/products');
+        return redirect('/management/products');
+    }
+
+    public function showUpdateProduct($id) {
+        return view('update-product', [
+            'product' => Product::find($id),
+            'producers' => Producer::all()
+        ]);
+    }
+
+    public function updateProduct($product_id, Request $request) {
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required|max:1023',
+            'producer' => 'required|max:255',
+            'price' => 'required|numeric'
+        ]);
+
+        $product = Product::find($product_id);
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+
+        $producer_name = $request->input('producer');
+        $producer = Producer::where('name', $producer_name)->get()->first();
+        if( $producer == null) {
+            $producer = new Producer();
+            $producer->name = $producer_name;
+            $producer->save();
+        }
+        $product->producer_id = $producer->id;
+        
+        $product->save();
+
+        /* photos */
+
+        $photos = $request->file('file');
+ 
+        if ($photos) {
+           if (!is_array($photos)) {
+                $photos = [$photos];
+            }
+    
+            if (!is_dir($this->photos_path)) {
+                mkdir($this->photos_path, 0777);
+            }
+    
+            for ($i = 0; $i < count($photos); $i++) {
+                $photo = $photos[$i];
+                $name = sha1(date('YmdHis') . str_random(30));
+                $save_name = $name . '.' . $photo->getClientOriginalExtension();
+                $resize_name = $name . str_random(2) . '.' . $photo->getClientOriginalExtension();
+    
+                Image::make($photo)
+                    ->resize(250, null, function ($constraints) {
+                        $constraints->aspectRatio();
+                    })
+                    ->save($this->photos_path . '/' . $resize_name);
+    
+                $photo->move($this->photos_path, $save_name);
+
+                $image = new Image2();
+                $image->name = $save_name;
+                $image->path = '/images/'.$save_name;
+                $image->save();
+
+                $product->images()->attach($image->id); 
+            } 
+        }
+
+        return redirect('/management/products');
+    }
+
+    public function deleteImage($product_id, $image_id) {
+        $product = Product::find($product_id);
+        $product->images()->detach($image_id);
+        Image2::find($image_id)->delete();
+
+        return Redirect::back();
     }
 
     public function showUsers() {

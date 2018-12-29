@@ -39,7 +39,7 @@
                                 <td><button class="btn btn-primary btn-sm">Aktiviraj</button></td>
                             @endif
                         </form>
-                        <td><a href="/management/updateProducts" class="link">Uredi</a></td>
+                        <td><a href="/management/updateProduct/{{$product->id}}" class="link">Uredi</a></td>
                     </tr>
                     @endforeach
                 </tbody>
