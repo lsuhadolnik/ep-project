@@ -7,10 +7,11 @@ sudo a2enmod rewrite
 ```
 
 ```apache
-DocumentRoot /var/www/ep_projekt/public
-     <Directory /var/www/ep_projekt/public>
-         AllowOverride all
-     </Directory>
+	DocumentRoot /var/www/ep-project/public
+
+	<Directory /var/www/ep-project/public>
+		AllowOverride all
+	</Directory>
 ```
 
 # Apache HTTPS
