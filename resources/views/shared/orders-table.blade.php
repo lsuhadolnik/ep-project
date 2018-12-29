@@ -15,11 +15,11 @@
             <tr>
                 <td> {{$order->id}} </td>
                 <td> {{\Carbon\Carbon::parse($order->submitted_at)->format('d. m. Y')}} </td>
-                <td> {{isset($order->fullfilled_at) ? \Carbon\Carbon::parse($order->fullfilled_at)->format('d. m. Y') : "" }}</td>
+                <td> {{isset($order->fulfilled_at) ? \Carbon\Carbon::parse($order->fulfilled_at)->format('d. m. Y') : "" }}</td>
                 <td> {{isset($order->cancelled_at) ? \Carbon\Carbon::parse($order->cancelled_at)->format('d. m. Y') : "" }}</td>
                 <td> {{$order->status}} </td>
                 <td> {{$order->total_price}} $</td>
-                <td><a href="/order/{{$order->id}}" class="link">Preglej</a></td>
+                <td><a href="{{ preg_match( '#^management/orders/#', Request::path() ) ? '/management/order/'.$order->id : '/order/'.$order->id }}" class="link">Preglej</a></td>
             </tr>
         @endforeach
     </tbody>

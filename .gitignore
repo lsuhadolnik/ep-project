@@ -34,3 +34,4 @@ storage/*.key
 laradock/
 
 certs/*
+images/*

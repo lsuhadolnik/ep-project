@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'MainController@show');
+Route::post('/search', 'MainController@search');
 
 /*tukaj mora priti se id od orderja*/
 Route::get('/order', function() {
@@ -33,20 +34,31 @@ Route::delete('/cart/{id}', 'ShoppingCartController@delete')->name('delcart');
 
 Route::get('/profile', 'ProfileController@show')->name('showprofile');
 Route::post('/profile', 'ProfileController@update')->name('profile');
+Route::post('/resetPassword', 'ProfileController@resetPassword')->name('reset');
 
-Route::get('/users', function() {
-    return view('users');
-});
+
 
 Route::get('/product/{id}', 'ProductController@show')->name('showproduct');
 Route::post('/product/{id}/rating', 'ProductController@rate')->name('rate');
 
-Route::get('/addProduct', function() {
-    return view('add-product');
-});
+Route::get('/management/products', 'ManagementController@showProducts');
+Route::get('/management/addProduct', 'ManagementController@showAddProduct');
+Route::post('/management/addProduct', 'ManagementController@addProduct');
+Route::get('/management/updateProduct', 'ManagementController@showUpdateProduct');
+Route::post('/management/updateProduct', 'ManagementController@updateProduct');
+Route::post('/management/product/{id}/changeStatus', 'ManagementController@productChangeStatus');
+
+Route::get('/management', 'ManagementController@show')->name('management');
+Route::get('/management/order/{id}', 'ManagementController@showOrder');
+Route::get('/management/orders/{status}', 'ManagementController@showByStatus')->name('ordersmanagement');
+Route::post('/management/order/{id}/{status}', 'ManagementController@setStatus');
+
+Route::get('/management/users', 'ManagementController@showUsers');
+Route::post('/management/user/{id}/changeStatus', 'ManagementController@userChangeStatus');
+
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-Route::post('/resetPassword', '\App\Http\Controllers\ProfileController@resetPassword')->name('reset');
+
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 

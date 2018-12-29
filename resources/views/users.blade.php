@@ -15,26 +15,33 @@
                         <th>Priimek</th>
                         <th>Email</th>
                         <th>Vloga</th>
+                        <th>Aktiven</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td> 1548795 </td>
-                        <td> Janez </td>
-                        <td> Novak</td>
-                        <td>neki@gmail.com</td>
-                        <td> Uporabnik </td>
-                        <td><button class="btn btn-primary btn-sm">Izbriši</button></td>
-                    </tr>
-                    <tr>
-                        <td> 15487956 </td>
-                        <td> Micka </td>
-                        <td> Sosedova </td>
-                        <td>micka@gmail.com</td>
-                        <td> Prodajalec </td>
-                        <td><button class="btn btn-primary btn-sm">Izbriši</button></td>
-                    </tr>
+                    @foreach($users as $user)
+                        <tr>
+                            <td> {{ $user->id }} </td>
+                            <td> {{ $user->name }} </td>
+                            <td> {{ $user->surname }}</td>
+                            <td> {{ $user->email }}</td>
+                            <td> {{ $user->role->name }} </td>
+                            @if( $user->status == "active")
+                                <td> Da </td>
+                            @else
+                                <td> Ne </td>
+                            @endif
+                            <form action="/management/user/{{$user->id}}/changeStatus" method="POST">
+                                @csrf
+                                @if( $user->status == "active")
+                                    <td><button class="btn btn-primary btn-sm">Deaktiviraj</button></td>
+                                @else
+                                    <td><button class="btn btn-primary btn-sm">Aktiviraj</button></td>
+                                @endif
+                            </form>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

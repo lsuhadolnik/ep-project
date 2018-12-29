@@ -29,9 +29,18 @@ class MainController extends Controller
     public function show()
     {
         return view('index', [
-            'products' => Product::all(),
+            'products' => Product::where('status', 'active')->get(),
             'topProducts' => Product::topRated(5)
 
+        ]);
+    }
+
+    public function search(Request $request) {
+        $query = $request->input('search');
+        return view('index', [
+            'products' => Product::search($query),
+            'topProducts' => Product::topRated(5),
+            'message' => "Rezultati iskanja za niz: ".$query
         ]);
     }
 

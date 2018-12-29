@@ -12,28 +12,28 @@
                 </button>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="orderDrowdown">
-                    <a class="dropdown-item" href="/orders">
+                    <!-- <a class="dropdown-item" href="/orders">
                         {{ __('Vsa') }}
-                    </a>
-                    <a class="dropdown-item" href="/orders/active">
+                    </a> -->
+                    <a class="dropdown-item" href="{{ preg_match( '#^management/#', Request::path() ) ? '/management/orders/active' : '/orders/active' }}">
                         {{ __('V obdelavi') }}
                     </a>
-                    <a class="dropdown-item" href="/orders/fullfilled">
+                    <a class="dropdown-item" href="{{ preg_match( '#^management/#', Request::path() ) ? '/management/orders/fulfilled' : '/orders/fulfilled' }}">
                         {{ __('Potrjena') }}
                     </a>
-                    <a class="dropdown-item" href="/orders/cancelled">
+                    <a class="dropdown-item" href="{{ preg_match( '#^management/#', Request::path() ) ? '/management/orders/cancelled' : '/orders/cancelled' }}">
                         {{ __('Stornirana') }}
                     </a>
-                    <form id="all" action="/orders" method="POST" style="display: none;">
+                    <!-- <form id="all" action="/orders" method="POST" style="display: none;">
+                        @csrf
+                    </form> -->
+                    <form id="cart-navbar" action="{{ preg_match( '#^management/#', Request::path() ) ? '/management/orders/active' : '/orders/active' }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    <form id="cart-navbar" action="/orders/active" method="POST" style="display: none;">
+                    <form id="cart-navbar" action="{{ preg_match( '#^management/#', Request::path() ) ? '/management/orders/fulfilled' : '/orders/fulfilled' }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    <form id="cart-navbar" action="/orders/fullfilled" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                    <form id="profile-navbar" action="/orders/cancelled" method="POST" style="display: none;">
+                    <form id="profile-navbar" action="{{ preg_match( '#^management/#', Request::path() ) ? '/management/orders/cancelled' : '/orders/cancelled' }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                     

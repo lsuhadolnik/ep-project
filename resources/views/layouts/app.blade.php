@@ -18,11 +18,19 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/scripts.js?v=4') }}" defer></script>
+    <script src="{{ asset('js/jquery.js') }}" defer></script>
 
     @if(Request::is('register') || Request::is('password/reset'))
         <script src='https://www.google.com/recaptcha/api.js'></script>
     @endif
 
+    <!-- Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <!-- Dropzone -->
+    <script src="{{ asset('js/dropzone.js') }}"></script>
+    <link href="{{ asset('css/dropzone.css') }}" rel="stylesheet">
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -35,7 +43,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link href="{{ asset('css/style.css?v=15') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css?v=17') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -54,8 +62,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Search -->
-                        <form class="form-inline my-2 my-lg-0 searchbar">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <form class="form-inline my-2 my-lg-0 searchbar" method="POST" action="/search">
+                            @csrf
+                            <input class="form-control mr-sm-2" type="search" placeholder="Iskanje" aria-label="Search" name="search">
                         </form>
                         <!-- Authentication Links -->
                         @guest
@@ -80,6 +89,11 @@
                                     <a class="dropdown-item" href="{{ route('showorders') }}">
                                         {{ __('Naročila') }}
                                     </a>
+                                    @if(Auth::user()->role->id < 3)
+                                        <a class="dropdown-item" href="{{ route('management') }}">
+                                            {{ __('Upravljanje') }}
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('showprofile') }}">
                                         {{ __('Profil') }}
                                     </a>
@@ -95,6 +109,11 @@
                                     <form id="show-order" action="{{ route('showorders') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    @if(Auth::user()->role->id < 3)
+                                        <form id="management" action="{{ route('management') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
                                     <form id="profile-navbar" action="{{ route('showprofile') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
