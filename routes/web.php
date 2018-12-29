@@ -12,12 +12,9 @@
 */
 
 Route::get('/', 'MainController@show');
-Route::post('/search', 'MainController@search');
+Route::get('/search', 'MainController@search');
 
-/*tukaj mora priti se id od orderja*/
-Route::get('/order', function() {
-    return view('order');
-});
+
 
 /*tukaj mora priti se id od uporabnika / prodajalca?*/
 Route::get('/order/{id}', 'OrderController@showOrder');
