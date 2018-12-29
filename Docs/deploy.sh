@@ -4,17 +4,15 @@
 
 sudo apt update
 # install composer
-sudo apt install curl php-cli php-mbstring git unzip
+sudo apt install curl php-cli php-mbstring git unzip php-curl
 curl -sS https://getcomposer.org/installer -o composer-setup.php
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
+# clone project
+sudo git clone https://github.com/lsuhadolnik/ep-project.git /var/www/ep-project
 
-# install git
-sudo apt install git
-git pull https://github.com/lsuhadolnik/ep-project.git /var/www/
-
-sudo chown -r ep:ep /var/www/ep-project
-sudo chmod -r 755 /var/www/ep-project/*
+sudo chown -R ep:ep /var/www/ep-project
+sudo chmod -R 755 /var/www/ep-project/*
 
 # Install dependancies
 cd /var/www/ep-project/
@@ -33,6 +31,7 @@ sudo ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enab
 chmod +x /var/www/ep-project/Docs/gencerts.sh
 mkdir /var/www/ep-project/certs
 cp /var/www/ep-project/Docs/gencerts.sh /var/www/ep-project/certs
+cd /var/www/ep-project/
 /var/www/ep-project/certs/gencerts.sh
 
 # Configure apache
