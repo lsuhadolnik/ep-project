@@ -39,8 +39,8 @@ sudo a2enmod rewrite
 sudo a2enmod ssl
 sudo service apache2 restart
 
-chmod -R 777 /var/www/storage/*
-chmod -R 777 /var/www/app/storage/*
+chmod -R 777 /var/www/ep-project/storage/*
+chmod -R 777 /var/www/app/ep-project/storage/*
 
 # Add mysql user
 mysql -u root -pep < /var/www/ep-project/Docs/createMySQLUser.sql
@@ -49,6 +49,8 @@ cd /var/www/ep-project
 cp .env.example .env
 php artisan migrate
 php artisan db:seed
+
+firefox http://localhost &
 
 
 
