@@ -13,7 +13,7 @@
             <br>
             @include('shared.order-table')
             <h5> Naročilo številka {{$order->id}}, oddano {{\Carbon\Carbon::parse($order->submitted_at)->format('d. m. Y')}} </h5>
-            <h5> Stanje: {{$order->status}} </h5>
+            <h5> Stanje: {{$order->opisniStatus}} </h5>
             <br>
             <div class="contrainer-fluid">
                 <div class="row">

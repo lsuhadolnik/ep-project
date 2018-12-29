@@ -28,15 +28,33 @@ class ManagementController extends Controller
         return view('management-dir');
     }
 
+    public function getDescriptionStatus($status) {
+        switch($status) {
+            case('active'):
+                return "Oddano, čaka na pregled";
+            case('fulfilled'):
+                return "Potrjeno";
+            case('cancelled'):
+                return "Preklicano";
+
+        }
+    }
+
     public function showOrder($order_id) {
+        $order = Order::find($order_id);
+        $order->opisniStatus=$this->getDescriptionStatus($order->status);
         return view('order', [
-            'order' => Order::find($order_id)
+            'order' => $order
         ]);
     }
 
     public function showByStatus($status) {
+        $orders = Order::where('status', $status)->get();
+        for($i=0; $i<count($orders); $i++) {
+            $orders[$i]->opisniStatus=$this->getDescriptionStatus($orders[$i]->status);
+        }
         return view('orders', [
-            'orders' => Order::where('status', $status)->get()
+            'orders' => $orders
         ]);
     }
 

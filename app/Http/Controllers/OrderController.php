@@ -50,6 +50,9 @@ class OrderController extends Controller
         $user = Auth::user();
         $orders = $user->orders($status)->get();
 
+        for($i=0; $i<count($orders); $i++) {
+            $orders[$i]->opisniStatus=$this->getDescriptionStatus($orders[$i]->status);
+        }
         return view('orders', [
             'orders' => $orders
         ]);
@@ -57,10 +60,11 @@ class OrderController extends Controller
 
     public function showOrder($order_id) {
         $user = Auth::user();
-
+        $order = $user->orders()->get()->find($order_id);
+        $order->opisniStatus=$this->getDescriptionStatus($order->status);
 
         return view('order', [
-            'order' => $user->orders()->get()->find($order_id)
+            'order' => $order
         ]);
     }
 }
