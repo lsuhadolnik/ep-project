@@ -25,7 +25,7 @@
                     <div style="margin:5px;">
                     <form action="/secure/order/{{$order->id}}/fulfilled" method="POST">
                         {{ csrf_field() }}
-                        <button type="submit" class="btn btn-primary" >Preglej in izpolni</button>
+                        <button type="submit" class="btn btn-primary" >Potrdi</button>
                     </form>
                     </div>
                 @endif
