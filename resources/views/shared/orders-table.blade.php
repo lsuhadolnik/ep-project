@@ -19,7 +19,7 @@
                 <td> {{isset($order->cancelled_at) ? \Carbon\Carbon::parse($order->cancelled_at)->format('d. m. Y') : "" }}</td>
                 <td> {{$order->opisniStatus}} </td>
                 <td> {{$order->total_price}} $</td>
-                <td><a href="{{ preg_match( '#^management/orders/#', Request::path() ) ? '/management/order/'.$order->id : '/order/'.$order->id }}" class="link">Preglej</a></td>
+                <td><a href="{{ preg_match( '#^secure/orders/#', Request::path() ) ? '/secure/order/'.$order->id : '/order/'.$order->id }}" class="link">Preglej</a></td>
             </tr>
         @endforeach
     </tbody>

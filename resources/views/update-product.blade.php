@@ -12,7 +12,7 @@
                     {{ $errors->first()}}
                 </div>
             @endif
-            <form class="add-product" method="POST" action="/management/updateProduct/{{$product->id}}" id="update-form"> 
+            <form class="add-product" method="POST" action="/secure/updateProduct/{{$product->id}}" id="update-form"> 
                 <input name="_token" value="{{ csrf_token() }}" type="hidden" id="token" >
                 <table class="add-product-table">
                     <tr>
@@ -54,7 +54,7 @@
             </form>
             <div class="update-product-images">
                 @foreach($product->images as $image)
-                    <form id="delete-form{{$image->id}}" action="/management/deleteProductImage/{{$product->id}}/{{$image->id}}" method="POST">
+                    <form id="delete-form{{$image->id}}" action="/secure/deleteProductImage/{{$product->id}}/{{$image->id}}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <div>

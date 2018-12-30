@@ -12,7 +12,7 @@
                     {{ $errors->first()}}
                 </div>
             @endif
-            <form class="add-product" method="POST" action="/management/addProduct" id="add-form">
+            <form class="add-product" method="POST" action="/secure/addProduct" id="add-form">
                 <input name="_token" value="{{ csrf_token() }}" type="hidden" id="token">
                 <table class="add-product-table">
                     <tr>

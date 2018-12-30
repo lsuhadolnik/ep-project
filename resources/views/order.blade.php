@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-12">
 
-            @if(preg_match( '#^management/#', Request::path() ))
+            @if(preg_match( '#^secure/#', Request::path() ))
                 <h3>Pregled naročila</h3>
             @else
                 <h3>Hvala za naročilo!</h3>
@@ -20,10 +20,10 @@
                     <div style="margin:5px;">
                         <button class="btn btn-primary" onclick="location.href='{{ URL::previous() }}';"> Nazaj na pregled naročil</button>
                     </div>
-            @if(preg_match( '#^management/#', Request::path() ))
+            @if(preg_match( '#^secure/#', Request::path() ))
                 @if($order->status == "active")
                     <div style="margin:5px;">
-                    <form action="/management/order/{{$order->id}}/fulfilled" method="POST">
+                    <form action="/secure/order/{{$order->id}}/fulfilled" method="POST">
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-primary" >Preglej in izpolni</button>
                     </form>
@@ -31,7 +31,7 @@
                 @endif
                 @if($order->status == "fulfilled" or $order->status == "active")
                     <div style="margin:5px;">
-                    <form action="/management/order/{{$order->id}}/cancelled" method="POST">
+                    <form action="/secure/order/{{$order->id}}/cancelled" method="POST">
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-primary" >Storno</button>
                     </form>

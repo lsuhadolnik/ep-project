@@ -32,7 +32,7 @@
                             @else
                                 <td> Ne </td>
                             @endif
-                            <form action="/management/user/{{$user->id}}/changeStatus" method="POST">
+                            <form action="/secure/user/{{$user->id}}/changeStatus" method="POST">
                                 @csrf
                                 @if( $user->status == "active")
                                     <td><button class="btn btn-primary btn-sm">Deaktiviraj</button></td>

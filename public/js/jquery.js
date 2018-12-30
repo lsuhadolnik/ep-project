@@ -5,7 +5,7 @@ $(document).ready(function() {
 });
 
 Dropzone.options.addDropzone= {
-    url: '/management/addProduct',
+    url: '/secure/addProduct',
     autoProcessQueue: false,
     uploadMultiple: true,
     parallelUploads: 5,
@@ -55,7 +55,7 @@ Dropzone.options.addDropzone= {
         });
 
         this.on("success", function (file) {
-            window.location.href = "/management/products";
+            window.location.href = "/secure/products";
         });
     }
 }
@@ -111,7 +111,7 @@ Dropzone.options.updateDropzone= {
         });
 
         this.on("success", function (file) {
-            window.location.href = "/management/products";
+            window.location.href = "/secure/products";
         });
     }
 }

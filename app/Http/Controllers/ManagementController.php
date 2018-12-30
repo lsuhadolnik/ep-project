@@ -60,7 +60,7 @@ class ManagementController extends Controller
 
     public function setStatus($order_id, $status) {
         Order::find($order_id)->changeStatus($status);
-        return redirect('/management/orders/active');
+        return redirect('/secure/orders/active');
     }
 
     public function showProducts() {
@@ -136,7 +136,7 @@ class ManagementController extends Controller
 
         
 
-        return redirect('/management/products');
+        return redirect('/secure/products');
     }
 
     public function showUpdateProduct($id) {
@@ -206,7 +206,7 @@ class ManagementController extends Controller
             } 
         }
 
-        return redirect('/management/products');
+        return redirect('/secure/products');
     }
 
     public function deleteImage($product_id, $image_id) {
@@ -241,7 +241,7 @@ class ManagementController extends Controller
         
         $user->save();
         
-        return redirect('/management/users');
+        return redirect('/secure/users');
     }
 
     public function productChangeStatus($id) {
@@ -254,6 +254,6 @@ class ManagementController extends Controller
         
         $product->save();
         
-        return redirect('/management/products');
+        return redirect('/secure/products');
     }
 }

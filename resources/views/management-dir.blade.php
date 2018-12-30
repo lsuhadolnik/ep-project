@@ -7,17 +7,17 @@
 
             <h3>Upravljanje prodajalne</h3>
             <br>
-            <a href="/management/orders/active" class="management">
+            <a href="/secure/orders/active" class="management">
                 <div class="alert alert-primary">Upravljanje z naročili</div>
             </a>
-            <a href="/management/products" class="management">
+            <a href="/secure/products" class="management">
                 <div class="alert alert-primary">Upravljanje z izdelki</div>
             </a>
 
-            <a href="/management/addProduct" class="management">
+            <a href="/secure/addProduct" class="management">
                 <div class="alert alert-primary">Dodajanje novega izdelka</div>
             </a>
-            <a href="/management/users" class="management">
+            <a href="/secure/users" class="management">
                 <div class="alert alert-primary">Upravljanje z uporabniki</div>
             </a>
         </div>

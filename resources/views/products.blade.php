@@ -31,7 +31,7 @@
                         @else 
                             <td> Ne </td>
                         @endif
-                        <form action="/management/product/{{$product->id}}/changeStatus" method="POST">
+                        <form action="/secure/product/{{$product->id}}/changeStatus" method="POST">
                             @csrf
                             @if( $product->status == "active")
                                 <td><button class="btn btn-primary btn-sm">Deaktiviraj</button></td>
@@ -39,7 +39,7 @@
                                 <td><button class="btn btn-primary btn-sm">Aktiviraj</button></td>
                             @endif
                         </form>
-                        <td><a href="/management/updateProduct/{{$product->id}}" class="link">Uredi</a></td>
+                        <td><a href="/secure/updateProduct/{{$product->id}}" class="link">Uredi</a></td>
                     </tr>
                     @endforeach
                 </tbody>
