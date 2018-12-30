@@ -244,6 +244,59 @@ class ManagementController extends Controller
         return redirect('/secure/users');
     }
 
+    public function showUser($id)
+    {
+        
+        return view('profile', [
+            'user' => User::find($id)
+        ]);
+        
+    }
+
+    public function updateUser(Request $request, $user_id) {
+        
+        $name = $request->input('name');
+        $surname = $request->input('surname');
+        $phone = $request->input('phone');
+        $address = $request->input('address');
+        $postal_code = $request->input('postal');
+
+
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'surname' => 'nullable|max:255',
+            'phone' => 'nullable|regex:/[0-9]+/',
+            'address' => 'nullable|string|max:255',
+            'postal' => 'nullable|exists:postal_codes,id',
+        ]);
+
+        $user = User::find($user_id);
+
+        $user->name = $name;
+        $user->surname = $surname;
+        $user->phone = $phone;
+        $user->address = $address;
+        $user->postal_code = $postal_code;
+        
+
+        $user->save();
+
+        return redirect('/secure/users');
+
+    }
+
+    public function changeRole(Request $request, $user_id) {
+
+        $user = User::find($user_id);
+        $role = $request->input('role');
+        $user->setRole($role);
+        $user->save();
+
+        return redirect('/secure/user/'.$user_id)->with([
+            'message' => "Vloga je bila uspešno spremenjena"
+        ]);
+    }
+
     public function productChangeStatus($id) {
         $product = Product::find($id);
         if($product->status == "active") {
@@ -256,4 +309,6 @@ class ManagementController extends Controller
         
         return redirect('/secure/products');
     }
+
+    
 }

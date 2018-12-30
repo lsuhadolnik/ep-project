@@ -11,7 +11,7 @@
                     {{ $errors->first()}}
                 </div>
             @endif
-            <form class="user-profile" method="post" action="{{ route('profile') }}">
+            <form class="user-profile" method="post" action="{{ preg_match( '#^secure/#', Request::path() ) ? '/secure/user/'.$user->id : '/profile' }}">
                 
                 {{ csrf_field() }}
                 <table>
@@ -47,6 +47,7 @@
                 <br>
                 <button type="submit" class="btn btn-primary">Shrani</button>
             </form>
+            @if(Auth::user() == $user)
             <form class="user-password" method="POST" action="/resetPassword">
                 @if( (session()->get( 'message' )) !== null )
                     <div class="alert alert-success" role="alert" style="margin-right:50px">
@@ -75,6 +76,38 @@
                 <br>
                 <button type="submit" class="btn btn-primary">Posodobi geslo</button>
             </form>
+            @endif
+            @if(Auth::user()->role_id == 1 and preg_match( '#^secure/#', Request::path() ))
+            <form class="user-password" method="POST" action="/secure/changeRole/{{$user->id}}">
+                @if( (session()->get( 'message' )) !== null )
+                    <div class="alert alert-success" role="alert" style="margin-right:50px">
+                        {{ session()->get( 'message' )}}
+                    </div>
+                @endif
+                {{ csrf_field() }}
+                <table>
+                    
+                    <tr>
+                        <th><label for="role">Izberite vlogo:</label><th>
+                        <td>
+                            <select class="role-change" name="role">
+                                @if($user->role_id == 2)
+                                    <option value="Prodajalec" selected>Prodajalec</option>
+                                    <option value="Stranka">Stranka</option>
+                                @else if($user->role_id == 3)
+                                    <option value="Prodajalec" >Prodajalec</option>
+                                    <option value="Stranka" selected>Stranka</option>
+                                @endif
+                            </select>
+                        <td>
+                    </tr>
+
+                    
+                </table>
+                <br>
+                <button type="submit" class="btn btn-primary">Spremeni vlogo</button>
+            </form>
+            @endif
         </div>
     </div>
 </div>

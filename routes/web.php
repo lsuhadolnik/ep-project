@@ -38,6 +38,8 @@ Route::post('/resetPassword', 'ProfileController@resetPassword')->name('reset');
 Route::get('/product/{id}', 'ProductController@show')->name('showproduct');
 Route::post('/product/{id}/rating', 'ProductController@rate')->name('rate');
 
+Route::get('/secure/management', 'ManagementController@show')->name('management');
+
 Route::get('/secure/products', 'ManagementController@showProducts');
 Route::get('/secure/addProduct', 'ManagementController@showAddProduct');
 Route::post('/secure/addProduct', 'ManagementController@addProduct');
@@ -46,14 +48,15 @@ Route::post('/secure/updateProduct/{id}', 'ManagementController@updateProduct');
 Route::delete('secure/deleteProductImage/{product_id}/{image_id}', 'ManagementController@deleteImage');
 Route::post('/secure/product/{id}/changeStatus', 'ManagementController@productChangeStatus');
 
-Route::get('/secure/management', 'ManagementController@show')->name('management');
 Route::get('/secure/order/{id}', 'ManagementController@showOrder');
 Route::get('/secure/orders/{status}', 'ManagementController@showByStatus')->name('ordersmanagement');
 Route::post('/secure/order/{id}/{status}', 'ManagementController@setStatus');
 
 Route::get('/secure/users', 'ManagementController@showUsers');
 Route::post('/secure/user/{id}/changeStatus', 'ManagementController@userChangeStatus');
-
+Route::get('/secure/user/{id}', 'ManagementController@showUser');
+Route::post('/secure/user/{id}', 'ManagementController@updateUser');
+Route::post('/secure/changeRole/{id}', 'ManagementController@changeRole');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 

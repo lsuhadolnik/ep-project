@@ -17,6 +17,7 @@
                         <th>Vloga</th>
                         <th>Aktiven</th>
                         <th></th>
+                        <th>Več</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,7 @@
                                     <td><button class="btn btn-primary btn-sm">Aktiviraj</button></td>
                                 @endif
                             </form>
+                            <td><a href="/secure/user/{{$user->id}}" class="link">Uredi</a></td>
                         </tr>
                     @endforeach
                 </tbody>

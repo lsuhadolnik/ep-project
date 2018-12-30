@@ -52,7 +52,7 @@ class UsersSeeder extends Seeder
         $u = new User();
         $u->name = 'Janez';
         $u->surname = 'Brodarič';
-        $u->address = 'Janezova 16\n1000 Ljubljana';
+        $u->address = 'Janezova 16';
         $u->email = "janez@ep.si";
         $u->phone = "031442546";
         $u->password = "janez";

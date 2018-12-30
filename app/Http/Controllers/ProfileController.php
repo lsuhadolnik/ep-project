@@ -34,7 +34,7 @@ class ProfileController extends Controller
         $data = $request->validate([
             'name' => 'required|max:255',
             'surname' => 'nullable|max:255',
-            'phone' => 'nullable|integer|min:100000000|max:999999999',
+            'phone' => 'nullable|regex:/[0-9]+/',
             'address' => 'nullable|string|max:255',
             'postal' => 'nullable|exists:postal_codes,id',
         ]);

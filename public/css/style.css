@@ -221,6 +221,10 @@ a.icon-button {
 .management:hover {
     text-decoration:none;
 }
+.role-change {
+    margin-left:20px;
+    width: 100%;
+}
 
 
 
