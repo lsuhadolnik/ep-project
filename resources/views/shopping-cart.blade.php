@@ -14,12 +14,27 @@
             @foreach ($products as $product)
                 @include('shared.list')
             @endforeach
-            <br><br>
+            <br>
+            <br>
+            <br>
+            <br>
             @if (!isset($empty))
-                <form action="/order/{{$id}}/active" method="POST">
-                    {{ csrf_field() }}
-                    <button type="submit" class="btn btn-primary right" >Oddaj naročilo</button>
-                </form>
+                <div class="container-fluid" style="margin-top:30px">
+                    <div class="row justify-content-end">
+                        <div style="margin:5px;">
+                            <form action="/order/{{$id}}" method="POST">
+                                {{ csrf_field() }}
+                                <button type="submit" class="btn btn-primary right" >Oddaj naročilo</button>
+                            </form>
+                        </div>
+                        <div style="margin:5px;">
+                            <form action="/invoice" method="POST">
+                                {{ csrf_field() }}
+                                <button type="submit" class="btn btn-primary right" >Ogled predračuna</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>    
             @endif
         </div>
     </div>

@@ -14,5 +14,10 @@
                 <td> {{$product->price}} $</td>
             </tr>
         @endforeach
+        <tr>
+            <td ></td>
+            <th >Skupaj</th>
+            <td>{{$order->total_price}}</td>
+        </tr>
     </tbody>
 </table>

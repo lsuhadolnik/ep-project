@@ -19,9 +19,9 @@ class OrderController extends Controller
         $this->middleware('auth');
     }
 
-    public function setStatus($order_id, $status) {
-        Order::find($order_id)->changeStatus($status);
-        return redirect('/orders');
+    public function addOrder($order_id) {
+        Order::find($order_id)->changeStatus("active");
+        return redirect('/orders/active');
     }
 
     public function getDescriptionStatus($status) {
@@ -64,6 +64,15 @@ class OrderController extends Controller
         $order->opisniStatus=$this->getDescriptionStatus($order->status);
 
         return view('order', [
+            'order' => $order
+        ]);
+    }
+
+    public function invoice() {
+        $user = Auth::user();
+        $order = $user->shoppingCart();
+
+        return view('invoice', [
             'order' => $order
         ]);
     }

@@ -3,7 +3,7 @@
     --my-middle-blue: #4682B4;
     --my-light-blue:  #B2DFEE;
 }
-body h3, h4, h5, thead{
+body h3, h4, h5, thead, body tbody th{
     color:var(--my-dark-blue);
 }
 body tbody, h6, label {

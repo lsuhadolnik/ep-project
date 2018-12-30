@@ -14,17 +14,13 @@
 Route::get('/', 'MainController@show');
 Route::get('/search', 'MainController@search');
 
-
-
-/*tukaj mora priti se id od uporabnika / prodajalca?*/
 Route::get('/order/{id}', 'OrderController@showOrder');
-Route::post('/order/{id}/{status}', 'OrderController@setStatus');
+Route::post('/order/{id}', 'OrderController@addOrder');
 
 Route::get('/orders', 'OrderController@show')->name('showorders');
 Route::get('/orders/{status}', 'OrderController@showByStatus')->name('filterorders');
 
-
-/*tukaj mora priti se id od userja?*/
+Route::post('/invoice', 'OrderController@invoice');
 Route::get('/cart', 'ShoppingCartController@show')->name('showcart');
 Route::post('/cart', 'ShoppingCartController@add')->name('cart');
 Route::delete('/cart/{id}', 'ShoppingCartController@delete')->name('delcart');
