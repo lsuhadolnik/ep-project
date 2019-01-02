@@ -165,7 +165,7 @@ class Product extends Model
 		WHERE MATCH(name,description) AGAINST(:query IN BOOLEAN MODE)", ["query"=>$q]);*/
 
 		if($ids == null){
-			return ["status" => "Ni artiklov."];
+			return [];
 		}
 
 		$product_ids = [];
