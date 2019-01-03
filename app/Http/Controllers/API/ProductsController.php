@@ -37,8 +37,11 @@ class ProductsController extends Controller
     public function show(Request $req, $product_id)
     {
         $p = Product::find($product_id);
-        $p->setAppends(['rating']);
-        return $p;
+        if($p != null){
+            $p->setAppends(['rating']);
+            return $p;
+        }
+        return ["message" => "Artikel s tem iD-jem ne obstaja."];
     }
 
     public function mostWanted(Request $req, $n = 5)
