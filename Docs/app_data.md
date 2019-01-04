@@ -69,9 +69,14 @@ Product::find($id)->images()->attach($image_id, [
 - Poštne številke:
 ```php
 PostalCode::find(1352);
-
 PostalCode::create(["id"=>1352, "name"=>"Preserje"]);
-
 ```
 
 - Iskanje po artiklih (upošteva tudi imena proizvajalcev): `Product::search($query)`
+
+
+- Podatki o prijavi admin uporabnikov
+```
+Login::all();
+Login::where('user_id', 1)->get();
+```
