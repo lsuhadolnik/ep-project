@@ -14,7 +14,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth', 'https'])->except('show');
+        //$this->middleware(['auth', 'https'])->except('show');
     }
 
     public function show($product_id)
