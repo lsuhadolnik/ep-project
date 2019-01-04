@@ -20,6 +20,9 @@
             <a href="/secure/users" class="management">
                 <div class="alert alert-primary">Upravljanje z uporabniki</div>
             </a>
+            <a href="/secure/user" class="management">
+                <div class="alert alert-primary">Ustvari novega uporabnika</div>
+            </a>
         </div>
     </div>
 </div>

@@ -56,6 +56,8 @@ Route::group(['middleware' => ['https', 'auth', 'cert']], function() {
     Route::post('/secure/order/{id}/{status}', 'ManagementController@setStatus');
 
     Route::get('/secure/users', 'ManagementController@showUsers');
+    Route::get('/secure/user', 'ManagementController@createUserForm');
+    Route::post('/secure/user', 'ManagementController@createUser');
     Route::post('/secure/user/{id}/changeStatus', 'ManagementController@userChangeStatus');
     Route::get('/secure/user/{id}', 'ManagementController@showUser');
     Route::post('/secure/user/{id}', 'ManagementController@updateUser');
