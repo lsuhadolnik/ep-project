@@ -48,8 +48,11 @@ class UsersController extends Controller
     public function updateMe(Request $request)
     {
         $user = Auth::user();
-        $user->update($request->all());
-        return response()->json($user, 200);
+        if(!$user){
+            $user->update($request->all());
+            return response()->json($user, 200);
+        }
+        return ["message" => "Uporabnik ni prijavljen ali ne obstaja."];
     }
 
     public function update(Request $request, User $user)
