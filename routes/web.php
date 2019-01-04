@@ -14,6 +14,7 @@
 
 Route::get('/', 'MainController@show');
 Route::get('/search', 'MainController@search');
+Route::get('/product/{id}', 'ProductController@show')->name('showproduct');
 
 Route::group(['middleware' => ['https', 'auth']], function() {
     Route::get('/order/{id}', 'OrderController@showOrder');
@@ -31,9 +32,6 @@ Route::group(['middleware' => ['https', 'auth']], function() {
     Route::post('/profile', 'ProfileController@update')->name('profile');
     Route::post('/resetPassword', 'ProfileController@resetPassword')->name('reset');
 
-
-
-    Route::get('/product/{id}', 'ProductController@show')->name('showproduct');
     Route::post('/product/{id}/rating', 'ProductController@rate')->name('rate');
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
     Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');

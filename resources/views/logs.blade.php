@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-12">
 
-            <h3>Dnevnik prijav</h3>
+            <h3>Dnevnik uporabnikov</h3>
             <br>
             <table class="table table-striped">
                 <thead>

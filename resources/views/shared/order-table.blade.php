@@ -17,7 +17,7 @@
         <tr>
             <td ></td>
             <th >Skupaj</th>
-            <td>{{$order->total_price}}</td>
+            <td>{{$order->total_price}} $</td>
         </tr>
     </tbody>
 </table>

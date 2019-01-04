@@ -288,14 +288,20 @@ class ManagementController extends Controller
 
     public function changeRole(Request $request, $user_id) {
 
-        $user = User::find($user_id);
-        $role = $request->input('role');
-        $user->setRole($role);
-        $user->save();
+        if(Auth::user()->role_id == 1) {
+            $user = User::find($user_id);
+            $role = $request->input('role');
+            $user->setRole($role);
+            $user->save();
 
-        return redirect('/secure/user/'.$user_id)->with([
-            'message' => "Vloga je bila uspešno spremenjena"
-        ]);
+            return redirect('/secure/user/'.$user_id)->with([
+                'message' => "Vloga je bila uspešno spremenjena"
+            ]);
+        } 
+        else {
+            return redirect('/secure/users');
+        }
+        
     }
 
     public function productChangeStatus($id) {
