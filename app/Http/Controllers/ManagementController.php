@@ -310,5 +310,39 @@ class ManagementController extends Controller
         return redirect('/secure/products');
     }
 
+    public function createUserForm() {
+        return view('create-user-form');
+    }
+
+    public function createUser(Request $request) {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $role = $request->input('role');
+
+
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+        ]);
+
+        $u = new User();
+        $u->name = $name;
+        $u->email = $email;
+        $u->password = $password;
+
+        $role_id = 3;
+        if(Auth::user()->role_id == 1) {
+            if($role == "Prodajalec") {
+                $role_id = 2;
+            } 
+        } 
+        $u->role_id = $role_id; 
+        $u->save();
+
+        return redirect('/secure/users');
+    }
+
     
 }

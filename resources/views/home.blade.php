@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Aktivacija uspešna!
                 </div>
             </div>
         </div>
