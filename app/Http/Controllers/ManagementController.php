@@ -7,6 +7,7 @@ use \App\Order;
 use \App\Product;
 use \App\User;
 use \App\Producer;
+use \App\Login;
 use App\Image as Image2;
 
 use App\Upload;
@@ -342,6 +343,21 @@ class ManagementController extends Controller
         $u->save();
 
         return redirect('/secure/users');
+    }
+
+    public function logs() {
+        $logs = Login::all();
+        for($i=0; $i<count($logs); $i++) {
+            $logs[$i]->user = User::find($logs[$i]->user_id);
+        }
+        if(Auth::user()->role_id == 1) {
+            return view('logs',  [
+                "logs" => $logs
+            ]);
+        }
+        else {
+            return redirect('/secure/management');
+        }
     }
 
     
