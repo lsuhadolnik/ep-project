@@ -19,7 +19,7 @@ class ShoppingCartController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'https']);
+        //$this->middleware(['auth', 'https']);
     }
 
     /**

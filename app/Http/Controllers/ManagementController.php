@@ -21,7 +21,7 @@ class ManagementController extends Controller
  
     public function __construct() {
         $this->photos_path = public_path('/images');
-        $this->middleware(['auth', 'https', 'cert']);
+        //$this->middleware(['auth', 'https', 'cert']);
     }
 
     public function show() {
