@@ -20,6 +20,14 @@
             <a href="/secure/users" class="management">
                 <div class="alert alert-primary">Upravljanje z uporabniki</div>
             </a>
+            <a href="/secure/user" class="management">
+                <div class="alert alert-primary">Ustvari novega uporabnika</div>
+            </a>
+            @if(Auth::user()->role_id == 1)
+            <a href="/secure/logs" class="management">
+                <div class="alert alert-primary">Dnevnik uporabnikov</div>
+            </a>
+            @endif
         </div>
     </div>
 </div>

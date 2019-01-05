@@ -1,7 +1,7 @@
 var addToCart = document.getElementsByClassName('add-to-cart');
 
 var submitQuantityButton = function(ev) {
-    event.preventDefault(); 
+    ev.preventDefault(); 
     var val = document.getElementById("quantity"+ev.target.id).value;
     if(!isPositiveInteger(val)) {
         console.log("ni pozitivno število");
@@ -28,7 +28,7 @@ var inputQuantity = document.getElementsByClassName('list-quantity-number');
 
 var submitQuantityNumber = function(ev){
     if(ev.which == 13){
-        event.preventDefault();
+        ev.preventDefault();
         var val = document.getElementById(ev.target.id).value;
         if(!isPositiveInteger(val)) {
             console.log("ni pozitivno število");
@@ -57,7 +57,7 @@ function getNumberFromEndOfString(str) {
 
 var quantityButton = document.getElementsByClassName('quantity-button')[0];
 var submitQuantity = function(ev){
-        event.preventDefault();
+        ev.preventDefault();
         var id = getNumberFromEndOfString(quantityButton.id)
         var val = document.getElementById("quantity"+id).value;
         if(!isPositiveInteger(val)) {

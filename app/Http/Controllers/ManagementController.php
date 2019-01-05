@@ -7,6 +7,7 @@ use \App\Order;
 use \App\Product;
 use \App\User;
 use \App\Producer;
+use \App\Login;
 use App\Image as Image2;
 
 use App\Upload;
@@ -287,14 +288,20 @@ class ManagementController extends Controller
 
     public function changeRole(Request $request, $user_id) {
 
-        $user = User::find($user_id);
-        $role = $request->input('role');
-        $user->setRole($role);
-        $user->save();
+        if(Auth::user()->role_id == 1) {
+            $user = User::find($user_id);
+            $role = $request->input('role');
+            $user->setRole($role);
+            $user->save();
 
-        return redirect('/secure/user/'.$user_id)->with([
-            'message' => "Vloga je bila uspešno spremenjena"
-        ]);
+            return redirect('/secure/user/'.$user_id)->with([
+                'message' => "Vloga je bila uspešno spremenjena"
+            ]);
+        } 
+        else {
+            return redirect('/secure/users');
+        }
+        
     }
 
     public function productChangeStatus($id) {
@@ -308,6 +315,55 @@ class ManagementController extends Controller
         $product->save();
         
         return redirect('/secure/products');
+    }
+
+    public function createUserForm() {
+        return view('create-user-form');
+    }
+
+    public function createUser(Request $request) {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $role = $request->input('role');
+
+
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+        ]);
+
+        $u = new User();
+        $u->name = $name;
+        $u->email = $email;
+        $u->password = $password;
+
+        $role_id = 3;
+        if(Auth::user()->role_id == 1) {
+            if($role == "Prodajalec") {
+                $role_id = 2;
+            } 
+        } 
+        $u->role_id = $role_id; 
+        $u->save();
+
+        return redirect('/secure/users');
+    }
+
+    public function logs() {
+        $logs = Login::all();
+        for($i=0; $i<count($logs); $i++) {
+            $logs[$i]->user = User::find($logs[$i]->user_id);
+        }
+        if(Auth::user()->role_id == 1) {
+            return view('logs',  [
+                "logs" => $logs
+            ]);
+        }
+        else {
+            return redirect('/secure/management');
+        }
     }
 
     

@@ -14,6 +14,7 @@
 
 Route::get('/', 'MainController@show');
 Route::get('/search', 'MainController@search');
+Route::get('/product/{id}', 'ProductController@show')->name('showproduct');
 
 Route::group(['middleware' => ['https', 'auth']], function() {
     Route::get('/order/{id}', 'OrderController@showOrder');
@@ -31,11 +32,9 @@ Route::group(['middleware' => ['https', 'auth']], function() {
     Route::post('/profile', 'ProfileController@update')->name('profile');
     Route::post('/resetPassword', 'ProfileController@resetPassword')->name('reset');
 
-
-
-    Route::get('/product/{id}', 'ProductController@show')->name('showproduct');
     Route::post('/product/{id}/rating', 'ProductController@rate')->name('rate');
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+    Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 });
 
 Route::group(['middleware' => ['https', 'auth', 'cert']], function() {
@@ -56,15 +55,18 @@ Route::group(['middleware' => ['https', 'auth', 'cert']], function() {
     Route::post('/secure/order/{id}/{status}', 'ManagementController@setStatus');
 
     Route::get('/secure/users', 'ManagementController@showUsers');
+    Route::get('/secure/user', 'ManagementController@createUserForm');
+    Route::post('/secure/user', 'ManagementController@createUser');
     Route::post('/secure/user/{id}/changeStatus', 'ManagementController@userChangeStatus');
     Route::get('/secure/user/{id}', 'ManagementController@showUser');
     Route::post('/secure/user/{id}', 'ManagementController@updateUser');
     Route::post('/secure/changeRole/{id}', 'ManagementController@changeRole');
+    Route::get('/secure/logs', 'ManagementController@logs');
 });
     
 
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
 
 
 /**---------------- FUUUJ! --------------------*/
