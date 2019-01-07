@@ -17,9 +17,9 @@ use \App\Product;
 */
 
 /* User routes */
-Route::post('user', 'API\UsersController@store')->middleware('https')->middleware('check-recaptcha');
+Route::post('user', 'API\UsersController@store')->middleware('check-recaptcha');
 
-Route::group(['middleware' => ['https', 'auth.basic.once']], function() {
+Route::group(['middleware' => ['auth.basic.once']], function() {
 
     Route::get('user', 'API\UsersController@showMe');
     Route::put('user', 'API\UsersController@updateMe');
