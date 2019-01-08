@@ -234,23 +234,33 @@ class ManagementController extends Controller
 
     public function userChangeStatus($id) {
         $user = User::find($id);
-        if($user->status == "active") {
-            $user->status = "disabled";
-        } else {
-            $user->status="active";
+
+        if(Auth::user()->role_id < $user->role_id) {
+            if($user->status == "active") {
+                $user->status = "disabled";
+            } else {
+                $user->status="active";
+            }
+            
+            $user->save();
         }
         
-        $user->save();
         
         return redirect('/secure/users');
     }
 
     public function showUser($id)
     {
+        $user = User::find($id);
+        if(Auth::user()->role_id < $user->role_id) {
+            return view('profile', [
+                'user' => $user
+            ]);
+        }
+        else {
+            return redirect('/secure/users');
+        }
         
-        return view('profile', [
-            'user' => User::find($id)
-        ]);
         
     }
 
@@ -273,14 +283,18 @@ class ManagementController extends Controller
 
         $user = User::find($user_id);
 
-        $user->name = $name;
-        $user->surname = $surname;
-        $user->phone = $phone;
-        $user->address = $address;
-        $user->postal_code = $postal_code;
-        
+        if(Auth::user()->role_id < $user->role_id) {
+            $user->name = $name;
+            $user->surname = $surname;
+            $user->phone = $phone;
+            $user->address = $address;
+            $user->postal_code = $postal_code;
+            
 
-        $user->save();
+            $user->save();
+        }
+
+        
 
         return redirect('/secure/users');
 
