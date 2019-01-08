@@ -48,7 +48,7 @@ class UsersController extends Controller
     public function updateMe(Request $request)
     {
         $user = Auth::user();
-        if(!$user){
+        if($user){
             $user->update($request->all());
             return response()->json($user, 200);
         }
